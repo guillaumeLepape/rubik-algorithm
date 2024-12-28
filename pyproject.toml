@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 100
+fix = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.mypy]
+strict = true
+pretty = true
+plugins = ["numpy.typing.mypy_plugin"]
