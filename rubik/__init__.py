@@ -115,7 +115,7 @@ class Rubik:
                 [Color.YELLOW, Color.YELLOW, Color.YELLOW],
                 [Color.YELLOW, Color.YELLOW, Color.YELLOW],
             ],
-            np.str_,
+            Color,
         )
         self.right_face = np.array(
             [
@@ -123,7 +123,7 @@ class Rubik:
                 [Color.GREEN, Color.GREEN, Color.GREEN],
                 [Color.GREEN, Color.GREEN, Color.GREEN],
             ],
-            np.str_,
+            Color,
         )
         self.left_face = np.array(
             [
@@ -131,7 +131,7 @@ class Rubik:
                 [Color.BLUE, Color.BLUE, Color.BLUE],
                 [Color.BLUE, Color.BLUE, Color.BLUE],
             ],
-            np.str_,
+            Color,
         )
         self.up_face = np.array(
             [
@@ -139,7 +139,7 @@ class Rubik:
                 [Color.ORANGE, Color.ORANGE, Color.ORANGE],
                 [Color.ORANGE, Color.ORANGE, Color.ORANGE],
             ],
-            np.str_,
+            Color,
         )
         self.back_face = np.array(
             [
@@ -147,7 +147,7 @@ class Rubik:
                 [Color.WHITE, Color.WHITE, Color.WHITE],
                 [Color.WHITE, Color.WHITE, Color.WHITE],
             ],
-            np.str_,
+            Color,
         )
         self.down_face = np.array(
             [
@@ -155,7 +155,7 @@ class Rubik:
                 [Color.RED, Color.RED, Color.RED],
                 [Color.RED, Color.RED, Color.RED],
             ],
-            np.str_,
+            Color,
         )
 
     def is_valid(self) -> bool:
