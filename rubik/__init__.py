@@ -28,6 +28,8 @@ class Movement(StrEnum):
     U_PRIME = "UP_PRIME"
     D = "DOWN"
     D_PRIME = "DOWN_PRIME"
+    M = "MIDDLE"
+    M_PRIME = "MIDDLE_PRIME"
 
 
 def opposite_color(color: Color) -> Color:
@@ -59,7 +61,7 @@ def counterclockwise_rotation(
 
 
 def parse_movement(raw_movement: str) -> tuple[Movement, int]:
-    regex = re.compile("([A-Z]'?)([0-9]?)")
+    regex = re.compile("([A-Z])([0-9]?)('?)")
 
     search = re.search(regex, raw_movement)
 
@@ -69,6 +71,8 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         number_of_moves = int(search.groups()[1])
     except (IndexError, ValueError):
         number_of_moves = 1
+
+    prime = search.groups()[2]
 
     map = {
         "R": Movement.R,
@@ -83,9 +87,11 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         "U'": Movement.U_PRIME,
         "D": Movement.D,
         "D'": Movement.D_PRIME,
+        "M": Movement.M,
+        "M'": Movement.M_PRIME,
     }
 
-    return map[raw_dir], number_of_moves
+    return map[raw_dir + prime], number_of_moves
 
 
 def parse_movements(raw_movements: str) -> list[tuple[Movement, int]]:
@@ -246,6 +252,20 @@ class Rubik:
                 self.down_face[:, 0] = self.back_face[:, 2][::-1]
                 self.back_face[:, 2] = self.up_face[:, 0][::-1]
                 self.up_face[:, 0] = saved
+
+            elif movement == Movement.M:
+                saved = deepcopy(self.front_face[:, 1])
+                self.front_face[:, 1] = self.up_face[:, 1]
+                self.up_face[:, 1] = self.back_face[:, 1][::-1]
+                self.back_face[:, 1] = self.down_face[:, 1][::-1]
+                self.down_face[:, 1] = saved
+
+            elif movement == Movement.M_PRIME:
+                saved = deepcopy(self.front_face[:, 1])
+                self.front_face[:, 1] = self.down_face[:, 1]
+                self.down_face[:, 1] = self.back_face[:, 1][::-1]
+                self.back_face[:, 1] = self.up_face[:, 1][::-1]
+                self.up_face[:, 1] = saved
 
             else:
                 raise ValueError(f"Wrong movement: {movement}")
