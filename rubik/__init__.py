@@ -4,6 +4,7 @@ from enum import StrEnum
 from typing import Any
 
 import numpy as np
+import numpy.typing as npt
 
 
 class Color(StrEnum):
@@ -44,19 +45,21 @@ def opposite_color(color: Color) -> Color:
     return (map | inversed_map)[color]
 
 
-def is_face_solved(face: np.matrix[tuple[int, int], Any]) -> bool:
-    first_color = face[0, 0]
+def is_face_solved(face: npt.NDArray[np.str_]) -> bool:
+    first_color: np.str_ = face[0, 0]
 
     return (face == first_color).all()
 
 
-def clockwise_rotation(face: np.matrix[tuple[int, int], Any]) -> np.matrix[tuple[int, int], Any]:
+def clockwise_rotation(
+    face: np.ndarray[tuple[int, ...], np.dtype[Any]],
+) -> np.ndarray[tuple[int, ...], np.dtype[Any]]:
     return np.rot90(face, k=-1)
 
 
 def counterclockwise_rotation(
-    face: np.matrix[tuple[int, int], Any],
-) -> np.matrix[tuple[int, int], Any]:
+    face: np.ndarray[tuple[int, ...], np.dtype[Any]],
+) -> np.ndarray[tuple[int, ...], np.dtype[Any]]:
     return np.rot90(face)
 
 
@@ -64,6 +67,9 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
     regex = re.compile("([A-Z])([0-9]?)('?)")
 
     search = re.search(regex, raw_movement)
+
+    if search is None:
+        raise ValueError(f"Could not parse movement: {raw_movement}")
 
     raw_dir = search.groups()[0]
 
@@ -103,53 +109,53 @@ def parse_movements(raw_movements: str) -> list[tuple[Movement, int]]:
 
 class Rubik:
     def __init__(self) -> None:
-        self.front_face = np.matrix(
+        self.front_face = np.array(
             [
                 [Color.YELLOW, Color.YELLOW, Color.YELLOW],
                 [Color.YELLOW, Color.YELLOW, Color.YELLOW],
                 [Color.YELLOW, Color.YELLOW, Color.YELLOW],
             ],
-            Color,
+            np.str_,
         )
-        self.right_face = np.matrix(
+        self.right_face = np.array(
             [
                 [Color.GREEN, Color.GREEN, Color.GREEN],
                 [Color.GREEN, Color.GREEN, Color.GREEN],
                 [Color.GREEN, Color.GREEN, Color.GREEN],
             ],
-            Color,
+            np.str_,
         )
-        self.left_face = np.matrix(
+        self.left_face = np.array(
             [
                 [Color.BLUE, Color.BLUE, Color.BLUE],
                 [Color.BLUE, Color.BLUE, Color.BLUE],
                 [Color.BLUE, Color.BLUE, Color.BLUE],
             ],
-            Color,
+            np.str_,
         )
-        self.up_face = np.matrix(
+        self.up_face = np.array(
             [
                 [Color.ORANGE, Color.ORANGE, Color.ORANGE],
                 [Color.ORANGE, Color.ORANGE, Color.ORANGE],
                 [Color.ORANGE, Color.ORANGE, Color.ORANGE],
             ],
-            Color,
+            np.str_,
         )
-        self.back_face = np.matrix(
+        self.back_face = np.array(
             [
                 [Color.WHITE, Color.WHITE, Color.WHITE],
                 [Color.WHITE, Color.WHITE, Color.WHITE],
                 [Color.WHITE, Color.WHITE, Color.WHITE],
             ],
-            Color,
+            np.str_,
         )
-        self.down_face = np.matrix(
+        self.down_face = np.array(
             [
                 [Color.RED, Color.RED, Color.RED],
                 [Color.RED, Color.RED, Color.RED],
                 [Color.RED, Color.RED, Color.RED],
             ],
-            Color,
+            np.str_,
         )
 
     def is_valid(self) -> bool:
