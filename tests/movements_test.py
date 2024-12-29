@@ -23,3 +23,38 @@ def test_movements_perm_nb() -> None:
         (Movement.U_PRIME, 1),
         (Movement.R, 1),
     ]
+
+
+def test_movements_perm_h() -> None:
+    movements = parse_movements("M2' U M2' U2 M2' U M2'")
+
+    assert movements == [
+        (
+            Movement.M_PRIME,
+            2,
+        ),
+        (
+            Movement.U,
+            1,
+        ),
+        (
+            Movement.M_PRIME,
+            2,
+        ),
+        (
+            Movement.U,
+            2,
+        ),
+        (
+            Movement.M_PRIME,
+            2,
+        ),
+        (
+            Movement.U,
+            1,
+        ),
+        (
+            Movement.M_PRIME,
+            2,
+        ),
+    ]

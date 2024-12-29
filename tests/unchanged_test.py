@@ -60,6 +60,20 @@ def test_perm_ua() -> None:
     assert rubik.is_solved()
 
 
+def test_perm_ua_alternative_algorithm() -> None:
+    rubik = Rubik()
+
+    assert rubik.is_solved()
+
+    movements = parse_movements("M2' U M U2 M' U M2'")
+
+    for _ in range(3):
+        for movement, number_of_moves in movements:
+            rubik.move(movement, number_of_moves)
+
+    assert rubik.is_solved()
+
+
 def test_perm_ub() -> None:
     rubik = Rubik()
 
@@ -110,6 +124,34 @@ def test_perm_ja() -> None:
     movements = parse_movements("L U' R' U L' U2 R U' R' U2 R")
 
     for _ in range(2):
+        for movement, number_of_moves in movements:
+            rubik.move(movement, number_of_moves)
+
+    assert rubik.is_solved()
+
+
+def test_perm_h() -> None:
+    rubik = Rubik()
+
+    assert rubik.is_solved()
+
+    movements = parse_movements("M2' U M2' U2 M2' U M2'")
+
+    for _ in range(2):
+        for movement, number_of_moves in movements:
+            rubik.move(movement, number_of_moves)
+
+    assert rubik.is_solved()
+
+
+def test_perm_dddd() -> None:
+    rubik = Rubik()
+
+    assert rubik.is_solved()
+
+    movements = parse_movements("M2' U M U2 M' U M2'")
+
+    for _ in range(3):
         for movement, number_of_moves in movements:
             rubik.move(movement, number_of_moves)
 
