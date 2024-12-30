@@ -31,6 +31,8 @@ class Movement(StrEnum):
     D_PRIME = "DOWN_PRIME"
     M = "MIDDLE"
     M_PRIME = "MIDDLE_PRIME"
+    r = "RIGHT_CENTRALE"
+    r_PRIME = "RIGHT_PRIME_CENTRALE"
 
 
 def opposite_color(color: Color) -> Color:
@@ -64,7 +66,7 @@ def counterclockwise_rotation(
 
 
 def parse_movement(raw_movement: str) -> tuple[Movement, int]:
-    regex = re.compile("([A-Z])([0-9]?)('?)")
+    regex = re.compile("([A-Z]|[a-z])([0-9]?)('?)")
 
     search = re.search(regex, raw_movement)
 
@@ -95,6 +97,8 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         "D'": Movement.D_PRIME,
         "M": Movement.M,
         "M'": Movement.M_PRIME,
+        "r": Movement.r,
+        "r'": Movement.r_PRIME,
     }
 
     return map[raw_dir + prime], number_of_moves
@@ -185,93 +189,141 @@ class Rubik:
             and is_face_solved(self.down_face)
         )
 
+    def perform_up(self) -> None:
+        self.up_face = clockwise_rotation(self.up_face)
+
+        saved = deepcopy(self.front_face[0])
+        self.front_face[0] = self.right_face[0]
+        self.right_face[0] = self.back_face[0]
+        self.back_face[0] = self.left_face[0]
+        self.left_face[0] = saved
+
+    def perform_up_prime(self) -> None:
+        self.up_face = counterclockwise_rotation(self.up_face)
+
+        saved = deepcopy(self.front_face[0])
+        self.front_face[0] = self.left_face[0]
+        self.left_face[0] = self.back_face[0]
+        self.back_face[0] = self.right_face[0]
+        self.right_face[0] = saved
+
+    def perform_down(self) -> None:
+        self.down_face = clockwise_rotation(self.down_face)
+
+        saved = deepcopy(self.front_face[2])
+        self.front_face[2] = self.left_face[2]
+        self.left_face[2] = self.back_face[2]
+        self.back_face[2] = self.right_face[2]
+        self.right_face[2] = saved
+
+    def perform_down_prime(self) -> None:
+        self.down_face = counterclockwise_rotation(self.down_face)
+
+        saved = deepcopy(self.front_face[2])
+        self.front_face[2] = self.right_face[2]
+        self.right_face[2] = self.back_face[2]
+        self.back_face[2] = self.left_face[2]
+        self.left_face[2] = saved
+
+    def perform_left(self) -> None:
+        self.left_face = clockwise_rotation(self.left_face)
+
+        saved = deepcopy(self.front_face[:, 0])
+        self.front_face[:, 0] = self.up_face[:, 0]
+        self.up_face[:, 0] = self.back_face[:, 2][::-1]
+        self.back_face[:, 2] = self.down_face[:, 0][::-1]
+        self.down_face[:, 0] = saved
+
+    def perform_left_prime(self) -> None:
+        self.left_face = counterclockwise_rotation(self.left_face)
+
+        saved = deepcopy(self.front_face[:, 0])
+        self.front_face[:, 0] = self.down_face[:, 0]
+        self.down_face[:, 0] = self.back_face[:, 2][::-1]
+        self.back_face[:, 2] = self.up_face[:, 0][::-1]
+        self.up_face[:, 0] = saved
+
+    def perform_right(self) -> None:
+        self.right_face = clockwise_rotation(self.right_face)
+
+        saved = deepcopy(self.front_face[:, 2])
+        self.front_face[:, 2] = self.down_face[:, 2]
+        self.down_face[:, 2] = self.back_face[:, 0][::-1]
+        self.back_face[:, 0] = self.up_face[:, 2][::-1]
+        self.up_face[:, 2] = saved
+
+    def perform_right_prime(self) -> None:
+        self.right_face = counterclockwise_rotation(self.right_face)
+
+        saved = deepcopy(self.front_face[:, 2])
+        self.front_face[:, 2] = self.up_face[:, 2]
+        self.up_face[:, 2] = self.back_face[:, 0][::-1]
+        self.back_face[:, 0] = self.down_face[:, 2][::-1]
+        self.down_face[:, 2] = saved
+
+    def perform_front(self) -> None:
+        self.front_face = clockwise_rotation(self.front_face)
+
+        saved = deepcopy(self.up_face[2, :])
+        self.up_face[2, :] = self.left_face[:, 2][::-1].transpose()
+        self.left_face[:, 2] = self.down_face[0, :].transpose()
+        self.down_face[0, :] = self.right_face[:, 0][::-1].transpose()
+        self.right_face[:, 0] = saved.transpose()
+
+    def perform_front_prime(self) -> None:
+        self.front_face = counterclockwise_rotation(self.front_face)
+
+        saved = deepcopy(self.up_face[2, :])
+        self.up_face[2, :] = self.right_face[:, 0].transpose()
+        self.right_face[:, 0] = self.down_face[0, :].transpose()[::-1]
+        self.down_face[0, :] = self.left_face[:, 2].transpose()
+        self.left_face[:, 2] = saved.transpose()[::-1]
+
+    def perform_middle(self) -> None:
+        saved = deepcopy(self.front_face[:, 1])
+        self.front_face[:, 1] = self.up_face[:, 1]
+        self.up_face[:, 1] = self.back_face[:, 1][::-1]
+        self.back_face[:, 1] = self.down_face[:, 1][::-1]
+        self.down_face[:, 1] = saved
+
+    def perform_middle_prime(self) -> None:
+        saved = deepcopy(self.front_face[:, 1])
+        self.front_face[:, 1] = self.down_face[:, 1]
+        self.down_face[:, 1] = self.back_face[:, 1][::-1]
+        self.back_face[:, 1] = self.up_face[:, 1][::-1]
+        self.up_face[:, 1] = saved
+
     def move(self, movement: Movement, number_of_moves: int = 1) -> None:
         for _ in range(number_of_moves):
-            if movement == Movement.U:
-                self.up_face = clockwise_rotation(self.up_face)
-
-                saved = deepcopy(self.front_face[0])
-                self.front_face[0] = self.right_face[0]
-                self.right_face[0] = self.back_face[0]
-                self.back_face[0] = self.left_face[0]
-                self.left_face[0] = saved
-
+            if movement == Movement.D:
+                self.perform_down()
+            elif movement == Movement.D_PRIME:
+                self.perform_down_prime()
+            elif movement == Movement.U:
+                self.perform_up()
             elif movement == Movement.U_PRIME:
-                self.up_face = counterclockwise_rotation(self.up_face)
-
-                saved = deepcopy(self.front_face[0])
-                self.front_face[0] = self.left_face[0]
-                self.left_face[0] = self.back_face[0]
-                self.back_face[0] = self.right_face[0]
-                self.right_face[0] = saved
-
+                self.perform_up_prime()
             elif movement == Movement.R:
-                self.right_face = clockwise_rotation(self.right_face)
-
-                saved = deepcopy(self.front_face[:, 2])
-                self.front_face[:, 2] = self.down_face[:, 2]
-                self.down_face[:, 2] = self.back_face[:, 0][::-1]
-                self.back_face[:, 0] = self.up_face[:, 2][::-1]
-                self.up_face[:, 2] = saved
-
+                self.perform_right()
             elif movement == Movement.R_PRIME:
-                self.right_face = counterclockwise_rotation(self.right_face)
-
-                saved = deepcopy(self.front_face[:, 2])
-                self.front_face[:, 2] = self.up_face[:, 2]
-                self.up_face[:, 2] = self.back_face[:, 0][::-1]
-                self.back_face[:, 0] = self.down_face[:, 2][::-1]
-                self.down_face[:, 2] = saved
-
+                self.perform_right_prime()
             elif movement == Movement.F:
-                self.front_face = clockwise_rotation(self.front_face)
-
-                saved = deepcopy(self.up_face[2, :])
-                self.up_face[2, :] = self.left_face[:, 2][::-1].transpose()
-                self.left_face[:, 2] = self.down_face[0, :].transpose()
-                self.down_face[0, :] = self.right_face[:, 0][::-1].transpose()
-                self.right_face[:, 0] = saved.transpose()
-
+                self.perform_front()
             elif movement == Movement.F_PRIME:
-                self.front_face = counterclockwise_rotation(self.front_face)
-
-                saved = deepcopy(self.up_face[2, :])
-                self.up_face[2, :] = self.right_face[:, 0].transpose()
-                self.right_face[:, 0] = self.down_face[0, :].transpose()[::-1]
-                self.down_face[0, :] = self.left_face[:, 2].transpose()
-                self.left_face[:, 2] = saved.transpose()[::-1]
-
+                self.perform_front_prime()
             elif movement == Movement.L:
-                self.left_face = clockwise_rotation(self.left_face)
-
-                saved = deepcopy(self.front_face[:, 0])
-                self.front_face[:, 0] = self.up_face[:, 0]
-                self.up_face[:, 0] = self.back_face[:, 2][::-1]
-                self.back_face[:, 2] = self.down_face[:, 0][::-1]
-                self.down_face[:, 0] = saved
-
+                self.perform_left()
             elif movement == Movement.L_PRIME:
-                self.left_face = counterclockwise_rotation(self.left_face)
-
-                saved = deepcopy(self.front_face[:, 0])
-                self.front_face[:, 0] = self.down_face[:, 0]
-                self.down_face[:, 0] = self.back_face[:, 2][::-1]
-                self.back_face[:, 2] = self.up_face[:, 0][::-1]
-                self.up_face[:, 0] = saved
-
+                self.perform_left_prime()
             elif movement == Movement.M:
-                saved = deepcopy(self.front_face[:, 1])
-                self.front_face[:, 1] = self.up_face[:, 1]
-                self.up_face[:, 1] = self.back_face[:, 1][::-1]
-                self.back_face[:, 1] = self.down_face[:, 1][::-1]
-                self.down_face[:, 1] = saved
-
+                self.perform_middle()
             elif movement == Movement.M_PRIME:
-                saved = deepcopy(self.front_face[:, 1])
-                self.front_face[:, 1] = self.down_face[:, 1]
-                self.down_face[:, 1] = self.back_face[:, 1][::-1]
-                self.back_face[:, 1] = self.up_face[:, 1][::-1]
-                self.up_face[:, 1] = saved
-
+                self.perform_middle_prime()
+            elif movement == Movement.r:
+                self.perform_right()
+                self.perform_middle_prime()
+            elif movement == Movement.r_PRIME:
+                self.perform_right_prime()
+                self.perform_middle()
             else:
                 raise ValueError(f"Wrong movement: {movement}")
