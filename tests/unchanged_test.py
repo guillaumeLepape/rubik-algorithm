@@ -15,9 +15,11 @@ from rubik import Rubik, parse_movements
         (3, "R' U R' U' R3 U' R' U R U R2", None),
         (2, "R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'", None),
         (2, "(R' U R U' R') (F' U' F) (R U R') (F R' F') (R U' R)", None),
+        (2, "r' D' F r U' r' F' D r2 U r' U' r' F r F'", None),
         (2, "L U' R' U L' U2 R U' R' U2 R", None),
         (2, "R U R' F' R U R' U' R' F R2 U' R' U'", None),
         (2, "M2' U M2' U2 M2' U M2'", None),
+        (3, "R' D' R U' R' D R U2 R' D' R U' R' D R", None),
     ],
     ids=(
         "sexy moves",
@@ -29,9 +31,11 @@ from rubik import Rubik, parse_movements
         "perm ub",
         "perm na",
         "perm nb",
+        "perm nb alt",
         "perm ja",
         "perm jb",
         "perm h",
+        "perm aa",
     ),
 )
 def test_algorithms_cycle(number_of_cycles: int, algorithms: str, auf: str | None) -> None:
