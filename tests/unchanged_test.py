@@ -50,7 +50,7 @@ def test_algorithms_cycle(number_of_cycles: int, algorithms: str, auf: str | Non
         for movement, number_of_moves in movements:
             rubik.move(movement, number_of_moves)
 
-        if auf is not None:
+        if auf_movements is not None:
             for movement, number_of_moves in auf_movements:
                 rubik.move(movement, number_of_moves)
 

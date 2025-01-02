@@ -31,6 +31,7 @@ class Movement(StrEnum):
     D_PRIME = "DOWN_PRIME"
     M = "MIDDLE"
     M_PRIME = "MIDDLE_PRIME"
+
     r = "RIGHT_CENTRALE"
     r_PRIME = "RIGHT_PRIME_CENTRALE"
 
@@ -66,7 +67,7 @@ def counterclockwise_rotation(
 
 
 def parse_movement(raw_movement: str) -> tuple[Movement, int]:
-    regex = re.compile("([A-Z]|[a-z])([0-9]?)('?)")
+    regex = re.compile("([a-zA-Z])([0-9]?)('?)")
 
     search = re.search(regex, raw_movement)
 
