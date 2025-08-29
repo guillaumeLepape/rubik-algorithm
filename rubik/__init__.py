@@ -5,6 +5,8 @@ from typing import Any
 
 import numpy as np
 import numpy.typing as npt
+from textwrap import dedent
+from pathlib import Path
 
 
 class Color(StrEnum):
@@ -31,9 +33,13 @@ class Movement(StrEnum):
     D_PRIME = "DOWN_PRIME"
     M = "MIDDLE"
     M_PRIME = "MIDDLE_PRIME"
+    S = "STANDING"
+    S_PRIME = "STANDING_PRIME"
 
     r = "RIGHT_CENTRALE"
     r_PRIME = "RIGHT_PRIME_CENTRALE"
+    f = "FRONT_CENTRALE"
+    f_PRIME = "FRONT_PRIME_CENTRALE"
 
 
 def opposite_color(color: Color) -> Color:
@@ -98,8 +104,12 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         "D'": Movement.D_PRIME,
         "M": Movement.M,
         "M'": Movement.M_PRIME,
+        "S": Movement.S,
+        "S'": Movement.S_PRIME,
         "r": Movement.r,
         "r'": Movement.r_PRIME,
+        "f": Movement.f,
+        "f'": Movement.f_PRIME
     }
 
     return map[raw_dir + prime], number_of_moves
@@ -280,6 +290,20 @@ class Rubik:
         self.down_face[0, :] = self.left_face[:, 2].transpose()
         self.left_face[:, 2] = saved.transpose()[::-1]
 
+    def perform_standing(self) -> None:
+        saved = deepcopy(self.up_face[1, :])
+        self.up_face[1, :] = self.left_face[:, 1][::-1].transpose()
+        self.left_face[:, 1] = self.down_face[1, :][::-1].transpose()
+        self.down_face[1, :] = self.right_face[:, 1][::-1].transpose()
+        self.right_face[:, 1] = saved.transpose()
+
+    def perform_standing_prime(self) -> None:
+        saved = deepcopy(self.up_face[1, :])
+        self.up_face[1, :] = self.right_face[:, 1].transpose()
+        self.right_face[:, 1] = self.down_face[1, :].transpose()[::-1]
+        self.down_face[1, :] = self.left_face[:, 1].transpose()
+        self.left_face[:, 1] = saved.transpose()[::-1]
+
     def perform_middle(self) -> None:
         saved = deepcopy(self.front_face[:, 1])
         self.front_face[:, 1] = self.up_face[:, 1]
@@ -320,11 +344,55 @@ class Rubik:
                 self.perform_middle()
             elif movement == Movement.M_PRIME:
                 self.perform_middle_prime()
+            elif movement == Movement.S:
+                self.perform_standing()
+            elif movement == Movement.S_PRIME:
+                self.perform_standing_prime()
             elif movement == Movement.r:
                 self.perform_right()
                 self.perform_middle_prime()
             elif movement == Movement.r_PRIME:
                 self.perform_right_prime()
                 self.perform_middle()
+            elif movement == Movement.f:
+                self.perform_front()
+                self.perform_standing()
+            elif movement == Movement.f_PRIME:
+                self.perform_front_prime()
+                self.perform_standing_prime()
             else:
                 raise ValueError(f"Wrong movement: {movement}")
+
+
+def compute_number_of_periods(raw_movement: str) -> int:
+    rubik = Rubik()
+
+    movements = parse_movements(raw_movement)
+
+    period = 0
+
+    while period == 0 or not rubik.is_solved():
+        for movement, number_of_moves in movements:
+            rubik.move(movement, number_of_moves)
+
+        period += 1
+
+    return period
+
+
+def render_oll(index: int, movements: str) -> str:
+    return dedent(f"""
+        ### OLL {index}\n
+        ![image info](img/O{index}.gif)\n
+        Algorithm: {movements}\n
+        Nombre de mouvements: {compute_number_of_periods(movements)}\n
+    """)
+
+
+def render_pll(index: int, movements: str) -> str:
+    return dedent(f"""
+        ### PLL {index}\n
+        ![image info](img/P{index}.gif)\n
+        Algorithm: {movements}\n
+        Nombre de mouvements: {compute_number_of_periods(movements)}\n
+    """)

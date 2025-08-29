@@ -1,3 +1,20 @@
+[build-system]
+requires = ["hatchling >= 1.21.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rubik"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy==2.3.2"
+]
+
+[dependency-groups]
+dev = [
+    "pytest","pre-commit"
+]
+
 [tool.ruff]
 line-length = 100
 fix = true
