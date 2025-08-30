@@ -1,12 +1,11 @@
 import re
 from copy import deepcopy
 from enum import StrEnum
+from textwrap import dedent
 from typing import Any
 
 import numpy as np
 import numpy.typing as npt
-from textwrap import dedent
-from pathlib import Path
 
 
 class Color(StrEnum):
@@ -109,7 +108,7 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         "r": Movement.r,
         "r'": Movement.r_PRIME,
         "f": Movement.f,
-        "f'": Movement.f_PRIME
+        "f'": Movement.f_PRIME,
     }
 
     return map[raw_dir + prime], number_of_moves
@@ -385,7 +384,7 @@ def render_oll(index: int, movements: str) -> str:
         ### OLL {index}\n
         ![image info](img/O{index}.gif)\n
         Algorithm: {movements}\n
-        Nombre de mouvements: {compute_number_of_periods(movements)}\n
+        Nombre de movements: {compute_number_of_periods(movements)}\n
     """)
 
 
@@ -394,5 +393,5 @@ def render_pll(index: int, movements: str) -> str:
         ### PLL {index}\n
         ![image info](img/P{index}.gif)\n
         Algorithm: {movements}\n
-        Nombre de mouvements: {compute_number_of_periods(movements)}\n
+        Nombre de movements: {compute_number_of_periods(movements)}\n
     """)
