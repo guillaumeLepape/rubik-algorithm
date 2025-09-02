@@ -56,7 +56,7 @@ def opposite_color(color: Color) -> Color:
 def is_face_solved(face: npt.NDArray[np.str_]) -> bool:
     first_color: np.str_ = face[0, 0]
 
-    return (face == first_color).all()
+    return (face == first_color).all()  # type: ignore[no-any-return]
 
 
 def clockwise_rotation(
