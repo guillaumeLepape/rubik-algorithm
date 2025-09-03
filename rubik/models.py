@@ -19,8 +19,14 @@ class AlgorithmGroup(BaseModel):
 
 class F2LAlgorithms(BaseModel):
     title: str
-    description: str
     groups: list[AlgorithmGroup]
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def description(self) -> str:
+        return (
+            "Solve the first two layers of the cube simultaneously with these intuitive algorithms."
+        )
 
 
 class OLLAlgorithms(BaseModel):
@@ -64,9 +70,6 @@ class COFPAlgorithms(BaseModel):
 COFP_ALGORITHMS = COFPAlgorithms(
     f2l=F2LAlgorithms(
         title="F2L (First Two Layers)",
-        description=(
-            "Solve the first two layers of the cube simultaneously with these intuitive algorithms."
-        ),
         groups=[
             AlgorithmGroup(
                 description="Connected Pairs",
