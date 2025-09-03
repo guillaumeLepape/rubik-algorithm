@@ -1,0 +1,35 @@
+site_name: Rubik's Cube Algorithms
+
+theme:
+  name: material
+  favicon: images/favicon.png
+  palette:
+    - scheme: default
+      primary: light blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: light blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.prefetch
+    - search.suggest
+    - toc.follow
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - COFP:
+      - '<img src="https://www.speedsolving.com/wiki/images/1/14/F2L_step.png" width="20"> F2L': f2l.md
+      - '<img src="https://www.speedsolving.com/wiki/images/1/18/OLL_step.png" width="20"> OLL': oll.md
+      - '<img src="https://www.speedsolving.com/wiki/images/e/e1/PLL_step.png" width="20"> PLL': pll.md

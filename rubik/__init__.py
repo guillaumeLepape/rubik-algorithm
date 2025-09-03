@@ -1,7 +1,6 @@
 import re
 from copy import deepcopy
 from enum import StrEnum
-from textwrap import dedent
 from typing import Any
 
 import numpy as np
@@ -35,10 +34,21 @@ class Movement(StrEnum):
     S = "STANDING"
     S_PRIME = "STANDING_PRIME"
 
+    l = "LEFT_CENTRALE"  # noqa: E741
+    l_PRIME = "LEFT_PRIME_CENTRALE"
     r = "RIGHT_CENTRALE"
     r_PRIME = "RIGHT_PRIME_CENTRALE"
     f = "FRONT_CENTRALE"
     f_PRIME = "FRONT_PRIME_CENTRALE"
+    d = "DOWN_CENTRALE"
+    d_PRIME = "DOWN_PRIME_CENTRALE"
+
+    x = "X"
+    x_PRIME = "X_PRIME"
+    y = "Y"
+    y_PRIME = "Y_PRIME"
+    z = "Z"
+    z_PRIME = "Z_PRIME"
 
 
 def opposite_color(color: Color) -> Color:
@@ -105,11 +115,24 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
         "M'": Movement.M_PRIME,
         "S": Movement.S,
         "S'": Movement.S_PRIME,
+        "l": Movement.l,
+        "l'": Movement.l_PRIME,
         "r": Movement.r,
         "r'": Movement.r_PRIME,
         "f": Movement.f,
         "f'": Movement.f_PRIME,
+        "d": Movement.d,
+        "d'": Movement.d_PRIME,
+        "x": Movement.x,
+        "x'": Movement.x_PRIME,
+        "y": Movement.y,
+        "y'": Movement.y_PRIME,
+        "z": Movement.z,
+        "z'": Movement.z_PRIME,
     }
+
+    if raw_dir + prime not in map:
+        raise ValueError(f"Could not parse movement: {raw_movement}")
 
     return map[raw_dir + prime], number_of_moves
 
@@ -361,37 +384,3 @@ class Rubik:
                 self.perform_standing_prime()
             else:
                 raise ValueError(f"Wrong movement: {movement}")
-
-
-def compute_number_of_periods(raw_movement: str) -> int:
-    rubik = Rubik()
-
-    movements = parse_movements(raw_movement)
-
-    period = 0
-
-    while period == 0 or not rubik.is_solved():
-        for movement, number_of_moves in movements:
-            rubik.move(movement, number_of_moves)
-
-        period += 1
-
-    return period
-
-
-def render_oll(index: int, movements: str) -> str:
-    return dedent(f"""
-        ### OLL {index}\n
-        ![image info](img/O{index}.gif)\n
-        Algorithm: {movements}\n
-        Nombre de movements: {compute_number_of_periods(movements)}\n
-    """)
-
-
-def render_pll(index: int, movements: str) -> str:
-    return dedent(f"""
-        ### PLL {index}\n
-        ![image info](img/P{index}.gif)\n
-        Algorithm: {movements}\n
-        Nombre de movements: {compute_number_of_periods(movements)}\n
-    """)
