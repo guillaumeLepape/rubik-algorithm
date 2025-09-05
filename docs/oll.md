@@ -1,5 +1,7 @@
 # OLL (Orient Last Layer)
 
+Orient all pieces on the last layer. Master these 57 algorithms spread across 15 groups.
+
 ## All edges flipped correctly
 
 ### OLL 27

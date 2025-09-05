@@ -7,17 +7,11 @@ name = "rubik"
 version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
-    "fastapi>=0.116.1",
-    "jinja2>=3.1.6",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.18",
     "mkdocs-minify-plugin>=0.8.0",
     "numpy>=2.3.2",
-    "python-multipart>=0.0.20",
 ]
-
-[project.optional-dependencies]
-server = ["uvicorn>=0.35.0"]
 
 [dependency-groups]
 dev = [
@@ -25,7 +19,6 @@ dev = [
     "pre-commit>=4.3.0",
     "pytest-cov>=6.2.1",
     "ruff>=0.12.11",
-    "uvicorn[standard]>=0.35.0",
 ]
 
 [tool.ruff]
@@ -38,4 +31,3 @@ select = ["E", "F", "I", "PT", "UP"]
 [tool.mypy]
 strict = true
 pretty = true
-plugins = ["pydantic.mypy"]
