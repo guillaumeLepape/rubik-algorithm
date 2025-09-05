@@ -1,1 +1,1 @@
-# rubik
+# rubik-algorithm

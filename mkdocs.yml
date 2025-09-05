@@ -21,13 +21,12 @@ theme:
     - navigation.top
     - navigation.instant
     - navigation.instant.prefetch
+    - navigation.instant.progress
     - search.suggest
     - toc.follow
 
 plugins:
   - search
-  - minify:
-      minify_html: true
 
 nav:
   - Home: index.md
