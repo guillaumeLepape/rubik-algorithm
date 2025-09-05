@@ -9,7 +9,6 @@ requires-python = ">=3.11"
 dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.18",
-    "mkdocs-minify-plugin>=0.8.0",
     "numpy>=2.3.2",
 ]
 
