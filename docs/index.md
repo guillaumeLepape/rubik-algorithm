@@ -17,6 +17,6 @@ The most popular speedcubing method that solves the cube in four steps:
 
 ## Sections
 
-- [F2L](f2l/) - First Two Layers (42 algorithms)
-- [OLL](oll/) - Orient Last Layer (57 algorithms)
-- [PLL](pll/) - Permute Last Layer (21 algorithms)
+- [F2L](f2l.md) - First Two Layers (42 algorithms)
+- [OLL](oll.md) - Orient Last Layer (57 algorithms)
+- [PLL](pll.md) - Permute Last Layer (21 algorithms)

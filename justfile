@@ -1,15 +1,22 @@
-alias s := setup
 alias i := install
+alias s := serve
+alias b := build
 alias t := test
 alias tc := test-cov
 alias c := check
 
-setup:
+init:
     just install
     uv run pre-commit install --install-hooks
 
 install:
     uv sync
+
+serve:
+    uv run mkdocs serve
+
+build:
+    uv run mkdocs build
 
 test:
     uv run pytest -vv
