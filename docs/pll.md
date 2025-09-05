@@ -1,5 +1,7 @@
 # PLL (Permute Last Layer)
 
+Permute the last layer pieces to their final positions with these 21 algorithms spread across 3 groups.
+
 ## Permutations of Edges Only
 
 ### H

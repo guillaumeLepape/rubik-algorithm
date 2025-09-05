@@ -13,4 +13,4 @@ ROOT_DIR = Path(__file__).parents[1]
     ],
 )
 def test_images(folder: str, file_extension: str, count: int) -> None:
-    assert len(list((ROOT_DIR / "static" / folder).glob(f"*.{file_extension}"))) == count
+    assert len(list((ROOT_DIR / "docs" / "images" / folder).glob(f"*.{file_extension}"))) == count
