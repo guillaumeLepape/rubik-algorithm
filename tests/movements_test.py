@@ -1,6 +1,6 @@
 import pytest
 
-from rubik import Movement, parse_movements
+from rubik_algorithm import Movement, parse_movements
 
 
 @pytest.mark.parametrize(
