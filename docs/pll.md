@@ -144,6 +144,7 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 - R' U R' U' R D' R' D R3 U D' R2 U' R2' D R2
 - R' U R' U' (y) R' F' R2 U' R' U R' F R F
+- R' U R U' R' f' U' R U2 R' U' R U' R' f R
 
 ### Y
 
