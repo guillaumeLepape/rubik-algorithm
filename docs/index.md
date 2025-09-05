@@ -1,5 +1,22 @@
-# COFP algorithms
+# Speedcubing Algorithms
 
-- F2L: [f2l](f2l.md)
-- OLL: [oll](oll.md)
-- PLL: [pll](pll.md)
+A collection of speedcubing algorithms and notes.
+
+## Methods
+
+Currently focusing on CFOP, but planning to expand to other methods.
+
+### CFOP (Cross, F2L, OLL, PLL)
+
+The most popular speedcubing method that solves the cube in four steps:
+
+- **Cross**: Form a plus sign on the bottom face
+- **F2L**: First Two Layers - 42 algorithms to solve corner-edge pairs
+- **OLL**: Orient Last Layer - 57 algorithms to orient the top face
+- **PLL**: Permute Last Layer - 21 algorithms to position pieces correctly
+
+## Sections
+
+- [F2L](f2l/) - First Two Layers (42 algorithms)
+- [OLL](oll/) - Orient Last Layer (57 algorithms)
+- [PLL](pll/) - Permute Last Layer (21 algorithms)
