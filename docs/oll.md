@@ -126,7 +126,7 @@ Orient all pieces on the last layer. Master these 57 algorithms spread across 15
 - f (R U R' U') f'
 - (y2) F (U R U' R') F'
 
-## OLL 36
+## "W" shapes
 
 ### OLL 36
 
@@ -194,3 +194,205 @@ Orient all pieces on the last layer. Master these 57 algorithms spread across 15
 {{ img_oll(46) }}
 
 - R' U' (R' F R F') U R
+
+## "T" shapes
+
+### OLL 33
+
+{{ img_oll(33) }}
+
+- (R U R' U') (R' F R F')
+
+### OLL 45
+
+{{ img_oll(45) }}
+
+- F (R U R' U') F'
+
+## "I" shapes
+
+### OLL 55
+
+{{ img_oll(55) }}
+
+- (y) R' F (R U R U') R2 F' R2 U' R' (U R U R')
+- R U2 R2 U' R U' R' U2 F R F'
+
+### OLL 56
+
+{{ img_oll(56) }}
+
+- r U r' (U R U' R') (U R U' R') r U' r'
+
+### OLL 51
+
+{{ img_oll(51) }}
+
+- F (U R U' R') (U R U' R') F'
+- (y2) f (R U R' U') (R U R' U') f'
+
+### OLL 52
+
+{{ img_oll(52) }}
+
+- (y2) R' F' U' F U' (R U R' U R)
+
+## Square shapes
+
+### OLL 5
+
+{{ img_oll(5) }}
+
+- (r' U2) (R U R' U r)
+- (y2) R' F2 L F L' F R
+
+### OLL 6
+
+{{ img_oll(6) }}
+
+- (y2) r U2 R' U' R U' r'
+
+## Big lightning bolt shapes
+
+### OLL 39
+
+{{ img_oll(39) }}
+
+- L F' (L' U' L U) F U' L'
+
+### OLL 40
+
+{{ img_oll(40) }}
+
+- R' F (R U R' U') F' U R
+
+## Small lightning bolt shapes
+
+### OLL 7
+
+{{ img_oll(7) }}
+
+- r U R' U R U2 r'
+
+### OLL 8
+
+{{ img_oll(8) }}
+
+- (l' U' L) U' (L' U2 l)
+- (y2) (r' U' R) U' (R' U2 r)
+
+### OLL 11
+
+{{ img_oll(11) }}
+
+- (y') r' R2 U R' U R U2 R' U M'
+
+### OLL 12
+
+{{ img_oll(12) }}
+
+- (y') r R2' U' R U' R' U2 R U' R r'
+
+## Fish shapes
+
+### OLL 9
+
+{{ img_oll(9) }}
+
+- (y') (R U R' U') R' (F R2 U R' U' F')
+
+### OLL 10
+
+{{ img_oll(10) }}
+
+- (y') (R U R' U) (R' F R F') R U2 R'
+
+### OLL 35
+
+{{ img_oll(35) }}
+
+- R U2 R2' F R F' R U2 R'
+
+### OLL 37
+
+{{ img_oll(37) }}
+
+- (y) F R U' R' U' R U R' F'
+- (y) (F R' F' R) (U R U' R')
+
+## Knight move shapes
+
+### OLL 13
+
+{{ img_oll(13) }}
+
+- F U R U2 R' U' R U R' F'
+- r U' r' U' r U r' y' R' U R
+
+### OLL 14
+
+{{ img_oll(14) }}
+
+- R' F R U R' F' R F U' F'
+
+### OLL 15
+
+{{ img_oll(15) }}
+
+- (y2) l' U' l (L' U' L U) l' U l
+- r' U' r R' U' R U r' U r
+
+### OLL 16
+
+{{ img_oll(16) }}
+
+- (y2) r U r' (R U R' U') r U' r'
+- R' F R U R' U' F' R U' R' U2 R
+
+## Awkward shapes
+
+### OLL 29
+
+{{ img_oll(29) }}
+
+- r2 D' r U r' D r2 U' r' U' r
+- (y) (R U R' U') (R U' R' F') U' (F R U R')
+- (y) S' R U R' U' R' F R F' U S
+
+### OLL 30
+
+{{ img_oll(30) }}
+
+- (y') r' D' r U' r' D r2 U' r' U r U r'
+
+### OLL 41
+
+{{ img_oll(41) }}
+
+- (y2) (R U R' U R U2 R') F (R U R' U') F'
+
+### OLL 42
+
+{{ img_oll(42) }}
+
+- (R' U' R U' R' U2 R) (F R U R' U' F')
+
+## All corners oriented
+
+### OLL 28
+
+{{ img_oll(28) }}
+
+- r U R' U' M U R U' R'
+
+### OLL 57
+
+{{ img_oll(57) }}
+
+- R U R' U' M' U R U' r'
+
+### OLL 20
+
+{{ img_oll(20) }}
+
+- r' R U R U R' U' M2 U R U' r'
