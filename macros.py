@@ -1,5 +1,5 @@
 def render_image(subfolder: str, filename: str, width: int) -> str:
-    return f'<img src="/images/{subfolder}/{filename}" width="{width}">'
+    return f'<img src="site:images/{subfolder}/{filename}" width="{width}">'
 
 
 IMAGE_WIDTH = 120
