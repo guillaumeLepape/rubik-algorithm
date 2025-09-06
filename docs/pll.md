@@ -6,7 +6,7 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### H
 
-![H](images/pll/H.webp)
+{{ img_pll("H") }}
 
 - M2' U M2' U2 M2' U M2'
 - M2' U' M2' U2' M2' U' M2'
@@ -14,21 +14,21 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ua
 
-![Ua](images/pll/U1.webp)
+{{ img_pll("Ua") }}
 
 - (y2) R U' R U R U R U' R' U' R2
 - R U R' U R' U' R2 U' R' U R' U R
 
 ### Ub
 
-![Ub](images/pll/U.webp)
+{{ img_pll("Ub") }}
 
 - (y2) M2 U' M U2 M' U' M2
 - R' U R' U' R3 U' R' U R U R2
 
 ### Z
 
-![Z](images/pll/Z.webp)
+{{ img_pll("Z") }}
 
 - (y) M2' U2 M U M2' U M2' U M
 - M2' U2 M U' M2' U' M2' U' M
@@ -37,7 +37,7 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Aa
 
-![Aa](images/pll/A1.webp)
+{{ img_pll("Aa") }}
 
 - (x) R' U R' D2 R U' R' D2 R2 (x')
 - l' U R' D2 R U' R' D2 R2 (x')
@@ -45,14 +45,14 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ab
 
-![Ab](images/pll/A.webp)
+{{ img_pll("Ab") }}
 
 - (y' x) R2 D2 R U R' D2 R U' R (x')
 - (y') R' D' R U R' D R U R' D' R U2 R' D R
 
 ### E
 
-![E](images/pll/E.webp)
+{{ img_pll("E") }}
 
 - (y x') (R U' R' D) (R U R' D') (R U R' D) (R U' R' D') (x)
 - R2 U R' U' (y) (R U R' U')2 R U R' (y') R U' R2'
@@ -61,86 +61,85 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### F
 
-![F](images/pll/F.webp)
+{{ img_pll("F") }}
 
 - (y) R' U' F' (R U R' U') R' F R2 (U' R' U') R U R' U R
 - (y2) R' U2 R' d' R' F' R2 U' R' U R' F R U' F
 
 ### Ga
 
-![Ga](images/pll/G3.webp)
+{{ img_pll("Ga") }}
 
 - (y) R2 U (R' U R' U') R U' R2 (D U' R' U) R D'
 
 ### Gb
 
-![Gb](images/pll/G2.webp)
+{{ img_pll("Gb") }}
 
 - R' U' R U D' R2 U R' U R U' R U' R2 D
 
 ### Gc
 
-![Gc](images/pll/G1.webp)
+{{ img_pll("Gc") }}
 
 - (y) R2 U' R U' R U R' U R2 D' U R U' R' D
 - (y') R2 F2 R U2 R U2 R' F R U R' U' R' F R2
 
 ### Gd
 
-![Gd](images/pll/G4.webp)
+{{ img_pll("Gd") }}
 
 - (y2) R U R' U' D R2 U' R U' R' U R' U R2 D'
 - (y2) D' R U R' U' D R2 U' R U' R' U R' U R2
 
 ### Ja
 
-![Ja](images/pll/J1.webp)
+{{ img_pll("Ja") }}
 
 - (y2) x R2' F R F' R U2 r' U r U2 x'
 
 ### Jb
 
-![Jb](images/pll/J.webp)
+{{ img_pll("Jb") }}
 
 - R U R' F' R U R' U' R' F R2 U' R' U'
 
 ### Na
 
-![Na](images/pll/N1.webp)
+{{ img_pll("Na") }}
 
 - R U R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R'
 - F' R U R' U' R' F R2 F U' R' U' R U F' R'
 
 ### Nb
 
-![Nb](images/pll/N.webp)
+{{ img_pll("Nb") }}
 
 - (R' U R U' R') (F' U' F) (R U R') (F R' F') (R U' R)
 
 ### Ra
 
-![Ra](images/pll/R1.webp)
+{{ img_pll("Ra") }}
 
 - (y') R U' R' U' R U R D R' U' R D' R' U2 R'
 - (y') R U R' F' R U2 R' U2 R' F R U R U2 R'
 
 ### Rb
 
-![Rb](images/pll/R.webp)
+{{ img_pll("Rb") }}
 
 - R' U2 R U2 R' F (R U R' U') R' F' R2' U'
 - R' U2 R' D' R U' R' D R U R U' R' U' R
 
 ### T
 
-![T](images/pll/T.webp)
+{{ img_pll("T") }}
 
-- R U R' F' R U R' U' R' F R2 U' R'
-- R U R' U' R' F R2 U' R' U F' L' U L
+- R U R' U' R' F R2 U' R' U' R U R' F'
 
 ### V
 
-![V](images/pll/V.webp)
+{{ img_pll("V") }}
 
 - R' U R' U' R D' R' D R3 U D' R2 U' R2' D R2
 - R' U R' U' (y) R' F' R2 U' R' U R' F R F
@@ -148,6 +147,6 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Y
 
-![Y](images/pll/Y.webp)
+{{ img_pll("Y") }}
 
 - F R U' R' U' R U R' F' (R U R' U') (R' F R F')
