@@ -6,6 +6,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### H
 
+Probability: **1/72**
+
 {{ img_pll("H") }}
 
 - M2' U M2' U2 M2' U M2'
@@ -14,6 +16,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ua
 
+Probability: **1/18**
+
 {{ img_pll("Ua") }}
 
 - (y2) R U' R U R U R U' R' U' R2
@@ -21,12 +25,16 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ub
 
+Probability: **1/18**
+
 {{ img_pll("Ub") }}
 
 - (y2) M2 U' M U2 M' U' M2
 - R' U R' U' R3 U' R' U R U R2
 
 ### Z
+
+Probability: **1/36**
 
 {{ img_pll("Z") }}
 
@@ -37,6 +45,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Aa
 
+Probability: **1/18**
+
 {{ img_pll("Aa") }}
 
 - (x) R' U R' D2 R U' R' D2 R2 (x')
@@ -45,12 +55,16 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ab
 
+Probability: **1/18**
+
 {{ img_pll("Ab") }}
 
 - (y' x) R2 D2 R U R' D2 R U' R (x')
 - (y') R' D' R U R' D R U R' D' R U2 R' D R
 
 ### E
+
+Probability: **1/36**
 
 {{ img_pll("E") }}
 
@@ -61,6 +75,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### F
 
+Probability: **1/18**
+
 {{ img_pll("F") }}
 
 - (y) R' U' F' (R U R' U') R' F R2 (U' R' U') R U R' U R
@@ -68,17 +84,23 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ga
 
+Probability: **1/18**
+
 {{ img_pll("Ga") }}
 
 - (y) R2 U (R' U R' U') R U' R2 (D U' R' U) R D'
 
 ### Gb
 
+Probability: **1/18**
+
 {{ img_pll("Gb") }}
 
 - R' U' R U D' R2 U R' U R U' R U' R2 D
 
 ### Gc
+
+Probability: **1/18**
 
 {{ img_pll("Gc") }}
 
@@ -87,6 +109,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Gd
 
+Probability: **1/18**
+
 {{ img_pll("Gd") }}
 
 - (y2) R U R' U' D R2 U' R U' R' U R' U R2 D'
@@ -94,17 +118,23 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Ja
 
+Probability: **1/18**
+
 {{ img_pll("Ja") }}
 
 - (y2) x R2' F R F' R U2 r' U r U2 x'
 
 ### Jb
 
+Probability: **1/18**
+
 {{ img_pll("Jb") }}
 
 - R U R' F' R U R' U' R' F R2 U' R' U'
 
 ### Na
+
+Probability: **1/72**
 
 {{ img_pll("Na") }}
 
@@ -113,11 +143,15 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Nb
 
+Probability: **1/72**
+
 {{ img_pll("Nb") }}
 
 - (R' U R U' R') (F' U' F) (R U R') (F R' F') (R U' R)
 
 ### Ra
+
+Probability: **1/18**
 
 {{ img_pll("Ra") }}
 
@@ -126,6 +160,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### Rb
 
+Probability: **1/18**
+
 {{ img_pll("Rb") }}
 
 - R' U2 R U2 R' F (R U R' U') R' F' R2' U'
@@ -133,11 +169,15 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 
 ### T
 
+Probability: **1/18**
+
 {{ img_pll("T") }}
 
 - R U R' U' R' F R2 U' R' U' R U R' F'
 
 ### V
+
+Probability: **1/18**
 
 {{ img_pll("V") }}
 
@@ -146,6 +186,8 @@ Permute the last layer pieces to their final positions with these 21 algorithms 
 - R' U R U' R' f' U' R U2 R' U' R U' R' f R
 
 ### Y
+
+Probability: **1/18**
 
 {{ img_pll("Y") }}
 
