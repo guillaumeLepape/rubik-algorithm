@@ -27,6 +27,8 @@ theme:
 
 plugins:
   - search
+  - macros:
+      module_name: macros
 
 nav:
   - Home: index.md
