@@ -432,6 +432,15 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-site-urls"
+version = "0.3.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/3f/9c/d02d2e089b128e9d84c46fb757738ae56bffce33b5ad90dec4f280d03436/mkdocs_site_urls-0.3.1.tar.gz", hash = "sha256:6c39b4aca9d0d29d747513bb679f5cc4e5957e37895ea5a12589e139ed1af3a9", size = 5887, upload-time = "2025-09-04T08:40:24.222Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c3/d3/4e93e993e3558fe70dc6ecda0e65694389b523dcebfa267515958cf99984/mkdocs_site_urls-0.3.1-py3-none-any.whl", hash = "sha256:e13f606e3de0fe52bfa7c152940a32fb0445a4a0e452b0387062a2ffe70e1662", size = 6365, upload-time = "2025-09-04T08:40:23.211Z" },
+]
+
+[[package]]
 name = "mypy"
 version = "1.17.1"
 source = { registry = "https://pypi.org/simple" }
@@ -762,6 +771,7 @@ source = { editable = "." }
 dependencies = [
     { name = "mkdocs-macros-plugin" },
     { name = "mkdocs-material" },
+    { name = "mkdocs-site-urls" },
     { name = "numpy" },
 ]
 
@@ -777,6 +787,7 @@ dev = [
 requires-dist = [
     { name = "mkdocs-macros-plugin", specifier = ">=1.3.9" },
     { name = "mkdocs-material", specifier = ">=9.6.18" },
+    { name = "mkdocs-site-urls", specifier = ">=0.3.1" },
     { name = "numpy", specifier = ">=2.3.2" },
 ]
 
