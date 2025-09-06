@@ -29,6 +29,7 @@ plugins:
   - search
   - macros:
       module_name: macros
+  - site-urls
 
 nav:
   - Home: index.md
