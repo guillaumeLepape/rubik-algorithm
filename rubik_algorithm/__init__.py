@@ -1,7 +1,7 @@
 import re
 from copy import deepcopy
 from enum import StrEnum
-from typing import Any
+from typing import Any, TypeAlias
 
 import numpy as np
 import numpy.typing as npt
@@ -16,7 +16,7 @@ class Color(StrEnum):
     BLUE = "BLUE"
 
 
-class Movement(StrEnum):
+class FaceRotation(StrEnum):
     R = "RIGHT"
     R_PRIME = "RIGHT_PRIME"
     L = "LEFT"
@@ -43,6 +43,8 @@ class Movement(StrEnum):
     d = "DOWN_CENTRALE"
     d_PRIME = "DOWN_PRIME_CENTRALE"
 
+
+class CubeRotation(StrEnum):
     x = "X"
     x_PRIME = "X_PRIME"
     y = "Y"
@@ -51,16 +53,56 @@ class Movement(StrEnum):
     z_PRIME = "Z_PRIME"
 
 
+Rotation: TypeAlias = FaceRotation | CubeRotation
+
+Movement: TypeAlias = tuple[Rotation, int]
+
+NAME_TO_MOVEMENT: dict[str, Rotation] = {
+    "R": FaceRotation.R,
+    "R'": FaceRotation.R_PRIME,
+    "L": FaceRotation.L,
+    "L'": FaceRotation.L_PRIME,
+    "F": FaceRotation.F,
+    "F'": FaceRotation.F_PRIME,
+    "B": FaceRotation.B,
+    "B'": FaceRotation.B_PRIME,
+    "U": FaceRotation.U,
+    "U'": FaceRotation.U_PRIME,
+    "D": FaceRotation.D,
+    "D'": FaceRotation.D_PRIME,
+    "M": FaceRotation.M,
+    "M'": FaceRotation.M_PRIME,
+    "S": FaceRotation.S,
+    "S'": FaceRotation.S_PRIME,
+    "l": FaceRotation.l,
+    "l'": FaceRotation.l_PRIME,
+    "r": FaceRotation.r,
+    "r'": FaceRotation.r_PRIME,
+    "f": FaceRotation.f,
+    "f'": FaceRotation.f_PRIME,
+    "d": FaceRotation.d,
+    "d'": FaceRotation.d_PRIME,
+    "x": CubeRotation.x,
+    "x'": CubeRotation.x_PRIME,
+    "y": CubeRotation.y,
+    "y'": CubeRotation.y_PRIME,
+    "z": CubeRotation.z,
+    "z'": CubeRotation.z_PRIME,
+}
+
+
+OPPOSITE_COLORS = {
+    Color.WHITE: Color.YELLOW,
+    Color.YELLOW: Color.WHITE,
+    Color.RED: Color.ORANGE,
+    Color.ORANGE: Color.RED,
+    Color.GREEN: Color.BLUE,
+    Color.BLUE: Color.GREEN,
+}
+
+
 def opposite_color(color: Color) -> Color:
-    map = {
-        Color.WHITE: Color.YELLOW,
-        Color.RED: Color.ORANGE,
-        Color.GREEN: Color.BLUE,
-    }
-
-    inversed_map = {value: key for key, value in map.items()}
-
-    return (map | inversed_map)[color]
+    return OPPOSITE_COLORS[color]
 
 
 def is_face_solved(face: npt.NDArray[np.str_]) -> bool:
@@ -81,7 +123,7 @@ def counterclockwise_rotation(
     return np.rot90(face)
 
 
-def parse_movement(raw_movement: str) -> tuple[Movement, int]:
+def parse_movement(raw_movement: str) -> Movement:
     regex = re.compile("([a-zA-Z])([0-9]?)('?)")
 
     search = re.search(regex, raw_movement)
@@ -98,46 +140,13 @@ def parse_movement(raw_movement: str) -> tuple[Movement, int]:
 
     prime = search.groups()[2]
 
-    map = {
-        "R": Movement.R,
-        "R'": Movement.R_PRIME,
-        "L": Movement.L,
-        "L'": Movement.L_PRIME,
-        "F": Movement.F,
-        "F'": Movement.F_PRIME,
-        "B": Movement.B,
-        "B'": Movement.B_PRIME,
-        "U": Movement.U,
-        "U'": Movement.U_PRIME,
-        "D": Movement.D,
-        "D'": Movement.D_PRIME,
-        "M": Movement.M,
-        "M'": Movement.M_PRIME,
-        "S": Movement.S,
-        "S'": Movement.S_PRIME,
-        "l": Movement.l,
-        "l'": Movement.l_PRIME,
-        "r": Movement.r,
-        "r'": Movement.r_PRIME,
-        "f": Movement.f,
-        "f'": Movement.f_PRIME,
-        "d": Movement.d,
-        "d'": Movement.d_PRIME,
-        "x": Movement.x,
-        "x'": Movement.x_PRIME,
-        "y": Movement.y,
-        "y'": Movement.y_PRIME,
-        "z": Movement.z,
-        "z'": Movement.z_PRIME,
-    }
-
-    if raw_dir + prime not in map:
+    if raw_dir + prime not in NAME_TO_MOVEMENT:
         raise ValueError(f"Could not parse movement: {raw_movement}")
 
-    return map[raw_dir + prime], number_of_moves
+    return NAME_TO_MOVEMENT[raw_dir + prime], number_of_moves
 
 
-def parse_movements(raw_movements: str) -> list[tuple[Movement, int]]:
+def parse_movements(raw_movements: str) -> list[Movement]:
     return [
         parse_movement(raw_movement)
         for raw_movement in raw_movements.replace("(", "").replace(")", "").split()
@@ -340,46 +349,46 @@ class Rubik:
         self.back_face[:, 1] = self.up_face[:, 1][::-1]
         self.up_face[:, 1] = saved
 
-    def move(self, movement: Movement, number_of_moves: int = 1) -> None:
+    def move(self, movement: Rotation, number_of_moves: int = 1) -> None:
         for _ in range(number_of_moves):
-            if movement == Movement.D:
+            if movement == FaceRotation.D:
                 self.perform_down()
-            elif movement == Movement.D_PRIME:
+            elif movement == FaceRotation.D_PRIME:
                 self.perform_down_prime()
-            elif movement == Movement.U:
+            elif movement == FaceRotation.U:
                 self.perform_up()
-            elif movement == Movement.U_PRIME:
+            elif movement == FaceRotation.U_PRIME:
                 self.perform_up_prime()
-            elif movement == Movement.R:
+            elif movement == FaceRotation.R:
                 self.perform_right()
-            elif movement == Movement.R_PRIME:
+            elif movement == FaceRotation.R_PRIME:
                 self.perform_right_prime()
-            elif movement == Movement.F:
+            elif movement == FaceRotation.F:
                 self.perform_front()
-            elif movement == Movement.F_PRIME:
+            elif movement == FaceRotation.F_PRIME:
                 self.perform_front_prime()
-            elif movement == Movement.L:
+            elif movement == FaceRotation.L:
                 self.perform_left()
-            elif movement == Movement.L_PRIME:
+            elif movement == FaceRotation.L_PRIME:
                 self.perform_left_prime()
-            elif movement == Movement.M:
+            elif movement == FaceRotation.M:
                 self.perform_middle()
-            elif movement == Movement.M_PRIME:
+            elif movement == FaceRotation.M_PRIME:
                 self.perform_middle_prime()
-            elif movement == Movement.S:
+            elif movement == FaceRotation.S:
                 self.perform_standing()
-            elif movement == Movement.S_PRIME:
+            elif movement == FaceRotation.S_PRIME:
                 self.perform_standing_prime()
-            elif movement == Movement.r:
+            elif movement == FaceRotation.r:
                 self.perform_right()
                 self.perform_middle_prime()
-            elif movement == Movement.r_PRIME:
+            elif movement == FaceRotation.r_PRIME:
                 self.perform_right_prime()
                 self.perform_middle()
-            elif movement == Movement.f:
+            elif movement == FaceRotation.f:
                 self.perform_front()
                 self.perform_standing()
-            elif movement == Movement.f_PRIME:
+            elif movement == FaceRotation.f_PRIME:
                 self.perform_front_prime()
                 self.perform_standing_prime()
             else:
