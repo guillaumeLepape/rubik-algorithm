@@ -65,6 +65,7 @@ Orient all pieces on the last layer. Master these 57 algorithms spread across 15
 
 - F (R U R' U') F' f (R U R' U') f'
 - (y) (r U r') U2 R U2 R' U2 (r U' r')
+- y' R U' R2 D' r U r' D R2 U R'
 
 ### OLL 3
 
