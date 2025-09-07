@@ -28,7 +28,6 @@ theme:
 
 plugins:
   - search
-  - offline
   - site-urls
   - macros:
       module_name: macros
