@@ -16,25 +16,41 @@ Solve the first two layers of the cube simultaneously with these intuitive algor
 
 ### F2L 5
 
-Setup: R U R' U2' R U' R' U
+**Setup**: R U R' U2' R U' R' U
 
 {{ img_f2l(5) }}
 
-#### Front Right
+/// tab | Front Right
 
-- U' R U R' U2 R U' R'
+```text
+U' R U R' U2 R U' R'
+```
 
-#### Front Left
+///
 
-- U R' F r U' r' F' R
+/// tab | Front Left
 
-#### Back Left
+```text
+U R' F r U' r' F' R
+```
 
-- U' L U L' U2 L U' L'
+///
 
-#### Back Right
+/// tab | Back Left
 
-- U' R' F R U R' U' F' R
+```text
+U' L U L' U2 L U' L'
+```
+
+///
+
+/// tab | Back Right
+
+```text
+U' R' F R U R' U' F' R
+```
+
+///
 
 ### F2L 6
 
@@ -66,25 +82,51 @@ Setup: R U R' U2' R U' R' U
 
 ### F2L 18
 
-Setup: R U R' U' R U R' F R' F' R
+**Setup**: R U R' U' R U R' F R' F' R
 
 {{ img_f2l(18) }}
 
-#### Front Right
+/// tab | Front Right
+**Main algorithm**
 
-- R' F R F' R U' R' U R U' R'
+```text
+R' F R F' R U' R' U R U' R'
+```
 
-#### Front Left
+///
 
-- L' U2 L U L' U' L
+/// tab | Front Left
+**Main algorithm**
 
-#### Back Left
+```text
+L' U2 L U L' U' L
+```
 
-- U F U R U' R' F' L U L'
+///
 
-#### Back Right
+/// tab | Back Left
+**With Rotation**
 
-- R' U2 R U R' U' R
+```text
+y R' U2 R U R' U' R
+```
+
+**Rotationless**
+
+```text
+U F U R U' R' F' L U L'
+```
+
+///
+
+/// tab | Back Right
+**Main algorithm**
+
+```text
+R' U2 R U R' U' R
+```
+
+///
 
 ## Pair Made on Side
 
