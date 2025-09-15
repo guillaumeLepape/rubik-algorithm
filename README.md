@@ -32,7 +32,7 @@ A collection of speedcubing algorithms and notes, featuring CFOP method algorith
 
 ```bash
 # Install dependencies
-uv install
+uv sync
 
 # Serve documentation
 mkdocs serve
