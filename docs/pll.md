@@ -69,7 +69,7 @@ Probability: **1/36**
 {{ img_pll("E") }}
 
 - (y x') (R U' R' D) (R U R' D') (R U R' D) (R U' R' D') (x)
-- R2 U R' U' (y) (R U R' U')2 R U R' (y') R U' R2'
+- y R' U' R' D' R U' R' D R U R' D' R U R' D R2
 
 ## Permutations of Edges and Corners
 
