@@ -83,6 +83,17 @@ render_f2l(
 
 ### F2L 10
 
+{{
+render_f2l(
+10,
+"R U' R' U' R U' R' U",
+[("Main algorithm", "U' R U R' U R U R'")],
+[("Main algorithm", "U L' U L U' F U F'")],
+[("Main algorithm", "U' L U L' U L U L'")],
+[("With rotation", "y U' R U R' U R U R'")],
+)
+}}
+
 ### F2L 11
 
 ### F2L 12
@@ -94,6 +105,17 @@ render_f2l(
 ## Split Pair by Going Over
 
 ### F2L 15
+
+{{
+render_f2l(
+15,
+"R U R' U' R U R' U2' R U' R'",
+[("Main algorithm", "R' D' R U' R' D R U R U' R'")],
+[("Main algorithm", "L' U L U2 F U F'")],
+[("Main algorithm", "L U L' U2 L U' L' U L U' L'")],
+[("Main algorithm", "R2 F R F' R U2 R' U R")]
+)
+}}
 
 ### F2L 16
 
