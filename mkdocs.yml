@@ -29,7 +29,6 @@ theme:
     - navigation.tabs.sticky
     - search.suggest
     - toc.follow
-    - content.tabs.link
 
 plugins:
   - search
@@ -43,6 +42,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.blocks.tab:
       alternate_style: true
+
+watch:
+  - macros.py
 
 nav:
   - Home: index.md
