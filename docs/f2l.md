@@ -18,12 +18,12 @@ Solve the first two layers of the cube simultaneously with these intuitive algor
 
 {{
 render_f2l(
-5,
-"R U R' U2' R U' R' U",
-[("Main algorithm", "U' R U R' U2 R U' R'")],
-[("Main algorithm", "U R' F r U' r' F' R")],
-[("Main algorithm", "U' L U L' U2 L U' L'")],
-[("Main algorithm", "U' R' F R U R' U' F' R")],
+    5,
+    "R U R' U2' R U' R' U",
+    [("Main algorithm", "U' R U R' U2 R U' R'")],
+    [("Main algorithm", "U R' F r U' r' F' R")],
+    [("Main algorithm", "U' L U L' U2 L U' L'")],
+    [("Main algorithm", "U' R' F R U R' U' F' R")],
 )
 }}
 
@@ -31,12 +31,12 @@ render_f2l(
 
 {{
 render_f2l(
-6,
-"F' U' F U2' F' U F U'",
-[("Main algorithm", "U' r U' R' U R U r'")],
-[("Main algorithm", "U L' U' L U2 L' U L")],
-[("Main algorithm", "U r U' r' U' L U F L'")],
-[("Main algorithm", "U R' U' R U2 R' U R")],
+    6,
+    "F' U' F U2' F' U F U'",
+    [("Main algorithm", "U' r U' R' U R U r'")],
+    [("Main algorithm", "U L' U' L U2 L' U L")],
+    [("Main algorithm", "U r U' r' U' L U F L'")],
+    [("Main algorithm", "U R' U' R U2 R' U R")],
 )
 }}
 
@@ -44,12 +44,12 @@ render_f2l(
 
 {{
 render_f2l(
-7,
-"R U R' U2' R U2' R' U",
-[("Main algorithm", "U' R U2 R' U' R U2 R'")],
-[("Main algorithm", "F U R U2 R' U F'")],
-[("Main algorithm", "U' L U2 L' U2 L U' L'")],
-[("Main algorithm", "r U2 R2 U' R2 U' r'")],
+    7,
+    "R U R' U2' R U2' R' U",
+    [("Main algorithm", "U' R U2 R' U' R U2 R'")],
+    [("Main algorithm", "F U R U2 R' U F'")],
+    [("Main algorithm", "U' L U2 L' U2 L U' L'")],
+    [("Main algorithm", "r U2 R2 U' R2 U' r'")],
 )
 }}
 
@@ -81,12 +81,12 @@ render_f2l(
 
 {{
 render_f2l(
-18,
-"R U R' U' R U R' F R' F' R",
-[("Main algorithm", "R' F R F' R U' R' U R U' R'")],
-[("Main algorithm", "L' U2 L U L' U' L")],
-[("With rotation", "y R' U2 R U R' U' R"), ("Rotationless", "U F U R U' R' F' L U L'")],
-[("Main algorithm", "R' U2 R U R' U' R")],
+    18,
+    "R U R' U' R U R' F R' F' R",
+    [("Main algorithm", "R' F R F' R U' R' U R U' R'")],
+    [("Main algorithm", "L' U2 L U L' U' L")],
+    [("With rotation", "y R' U2 R U R' U' R"), ("Rotationless", "U F U R U' R' F' L U L'")],
+    [("Main algorithm", "R' U2 R U R' U' R")],
 )
 }}
 

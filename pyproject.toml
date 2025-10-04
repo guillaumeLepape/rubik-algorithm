@@ -13,12 +13,18 @@ dependencies = [
     "numpy>=2.3.2",
 ]
 
+[project.scripts]
+format_macro_code = "format_macro_code:app"
+
 [dependency-groups]
 dev = [
+    "black>=25.9.0",
     "mypy>=1.17.1",
     "pre-commit>=4.3.0",
     "pytest-cov>=6.2.1",
+    "rich>=14.1.0",
     "ruff>=0.12.12",
+    "typer>=0.19.2",
 ]
 
 [tool.ruff]

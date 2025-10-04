@@ -55,3 +55,10 @@ repos:
     rev: 0.8.16
     hooks:
       - id: uv-lock
+
+  - repo: local
+    hooks:
+      - id: format-macro-code
+        name: format-macro-code
+        language: python
+        entry: format_macro_code --quiet

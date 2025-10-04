@@ -4,6 +4,7 @@ alias b := build
 alias t := test
 alias tc := test-cov
 alias c := check
+alias f := format
 
 init:
     just install
@@ -30,3 +31,9 @@ test-cov:
 
 check:
     uv run pre-commit run -a
+
+format:
+    uv run format_macro_code.py docs/*.md
+
+format-check:
+    uv run format_macro_code.py --check docs/*.md
