@@ -1,0 +1,2432 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://guillaumelepape.github.io/rubik-algorithm/oll/">
+      
+      
+        <link rel="prev" href="../f2l/">
+      
+      
+        <link rel="next" href="../pll/">
+      
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
+    
+    
+      
+        <title>OLL - Rubik's Cube Algorithms</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2a3383ac.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oll-orient-last-layer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Rubik&#39;s Cube Algorithms" class="md-header__button md-logo" aria-label="Rubik's Cube Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Rubik's Cube Algorithms
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              <img src="/rubik-algorithm/images/oll/menu_icon.png" width="20"> OLL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="light-blue" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../f2l/" class="md-tabs__link">
+          
+  
+  
+  COFP
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Rubik&#39;s Cube Algorithms" class="md-nav__button md-logo" aria-label="Rubik's Cube Algorithms" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Rubik's Cube Algorithms
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    COFP
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            COFP
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../f2l/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <img src="/rubik-algorithm/images/f2l/menu_icon.png" width="20"> F2L
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <img src="/rubik-algorithm/images/oll/menu_icon.png" width="20"> OLL
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <img src="/rubik-algorithm/images/oll/menu_icon.png" width="20"> OLL
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#all-edges-flipped-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      All edges flipped correctly
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All edges flipped correctly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 27
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 26
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 21
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 22
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 23
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 24
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 25
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-edges-flipped-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      No edges flipped correctly
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="No edges flipped correctly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 17
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 18
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 19
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "P" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;P&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 31
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 32
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-43" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 43
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 44
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "W" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;W&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 36
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 38
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "L" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;L&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 48
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-47" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 47
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-53" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 53
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-54" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 54
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-49" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 49
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 50
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "C" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;C&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 34
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 46
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "T" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;T&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 33
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-45" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 45
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "I" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;I&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-55" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 55
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 56
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 51
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 52
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#square-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Square shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Square shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#big-lightning-bolt-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Big lightning bolt shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Big lightning bolt shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 39
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 40
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-lightning-bolt-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Small lightning bolt shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Small lightning bolt shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 12
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fish-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fish shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fish shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-35" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 35
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 37
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knight-move-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knight move shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knight move shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 13
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 14
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 15
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 16
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awkward-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Awkward shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Awkward shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 29
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 30
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-41" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 41
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 42
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-corners-oriented" class="md-nav__link">
+    <span class="md-ellipsis">
+      All corners oriented
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All corners oriented">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 28
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-57" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 57
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 20
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pll/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <img src="/rubik-algorithm/images/pll/menu_icon.png" width="20"> PLL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#all-edges-flipped-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      All edges flipped correctly
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All edges flipped correctly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 27
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 26
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 21
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 22
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 23
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 24
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 25
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no-edges-flipped-correctly" class="md-nav__link">
+    <span class="md-ellipsis">
+      No edges flipped correctly
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="No edges flipped correctly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 3
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 17
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 18
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 19
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "P" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;P&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 31
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-32" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 32
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-43" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 43
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-44" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 44
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#w-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "W" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;W&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-36" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 36
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-38" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 38
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#l-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "L" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;L&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-48" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 48
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-47" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 47
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-53" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 53
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-54" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 54
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-49" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 49
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-50" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 50
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "C" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;C&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-34" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 34
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 46
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#t-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "T" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;T&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-33" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 33
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-45" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 45
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      "I" shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;I&#34; shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-55" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 55
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 56
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-51" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 51
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-52" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 52
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#square-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Square shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Square shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 5
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 6
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#big-lightning-bolt-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Big lightning bolt shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Big lightning bolt shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 39
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 40
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#small-lightning-bolt-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Small lightning bolt shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Small lightning bolt shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 7
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 8
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 11
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 12
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fish-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fish shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fish shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 9
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 10
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-35" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 35
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-37" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 37
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#knight-move-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Knight move shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Knight move shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-13" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 13
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 14
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 15
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 16
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#awkward-shapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Awkward shapes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Awkward shapes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-29" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 29
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-30" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 30
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-41" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 41
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 42
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-corners-oriented" class="md-nav__link">
+    <span class="md-ellipsis">
+      All corners oriented
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="All corners oriented">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#oll-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 28
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-57" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 57
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oll-20" class="md-nav__link">
+    <span class="md-ellipsis">
+      OLL 20
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="oll-orient-last-layer">OLL (Orient Last Layer)<a class="headerlink" href="#oll-orient-last-layer" title="Permanent link">&para;</a></h1>
+<p>Orient all pieces on the last layer. Master these 57 algorithms spread across 15 groups.</p>
+<h2 id="all-edges-flipped-correctly">All edges flipped correctly<a class="headerlink" href="#all-edges-flipped-correctly" title="Permanent link">&para;</a></h2>
+<h3 id="oll-27">OLL 27<a class="headerlink" href="#oll-27" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O27.png" width="120"></p>
+<ul>
+<li>R U R' U R U2 R'</li>
+<li>y' R' U2 R U R' U R</li>
+</ul>
+<h3 id="oll-26">OLL 26<a class="headerlink" href="#oll-26" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O26.png" width="120"></p>
+<ul>
+<li>y2 R' U' R U' R' U2 R</li>
+</ul>
+<h3 id="oll-21">OLL 21<a class="headerlink" href="#oll-21" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/108</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O21.png" width="120"></p>
+<ul>
+<li>R U R' U R U' R' U R U2 R'</li>
+<li>y F (R U R' U')3 F'</li>
+</ul>
+<h3 id="oll-22">OLL 22<a class="headerlink" href="#oll-22" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O22.png" width="120"></p>
+<ul>
+<li>R U2 R2' U' R2 U' R2' U2 R</li>
+</ul>
+<h3 id="oll-23">OLL 23<a class="headerlink" href="#oll-23" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O23.png" width="120"></p>
+<ul>
+<li>R2 D' R U2 R' D R U2 R</li>
+<li>(y2) R2 D R' U2 R D' R' U2 R'</li>
+</ul>
+<h3 id="oll-24">OLL 24<a class="headerlink" href="#oll-24" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O24.png" width="120"></p>
+<ul>
+<li>r U R' U' r' F R F'</li>
+<li>(y' x') R U R' D R U' R' D'</li>
+</ul>
+<h3 id="oll-25">OLL 25<a class="headerlink" href="#oll-25" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O25.png" width="120"></p>
+<ul>
+<li>y' F' r U R' U' r' F R</li>
+<li>l' U' L' U R U' L U x'</li>
+</ul>
+<h2 id="no-edges-flipped-correctly">No edges flipped correctly<a class="headerlink" href="#no-edges-flipped-correctly" title="Permanent link">&para;</a></h2>
+<h3 id="oll-1">OLL 1<a class="headerlink" href="#oll-1" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/108</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O1.png" width="120"></p>
+<ul>
+<li>R U2 R2 F R F' U2 R' F R F'</li>
+</ul>
+<h3 id="oll-2">OLL 2<a class="headerlink" href="#oll-2" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O2.png" width="120"></p>
+<ul>
+<li>F (R U R' U') F' f (R U R' U') f'</li>
+<li>(y) (r U r') U2 R U2 R' U2 (r U' r')</li>
+<li>y' R U' R2 D' r U r' D R2 U R'</li>
+</ul>
+<h3 id="oll-3">OLL 3<a class="headerlink" href="#oll-3" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O3.png" width="120"></p>
+<ul>
+<li>(y') f (R U R' U') f' U' F (R U R' U') F'</li>
+<li>(y) r' R2 U R' U r U2 r' U R' r</li>
+</ul>
+<h3 id="oll-4">OLL 4<a class="headerlink" href="#oll-4" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O4.png" width="120"></p>
+<ul>
+<li>f (R U R' U') f' U F (R U R' U') F'</li>
+</ul>
+<h3 id="oll-17">OLL 17<a class="headerlink" href="#oll-17" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O17.png" width="120"></p>
+<ul>
+<li>R U R' U (R' F R F') U2 (R' F R F')</li>
+</ul>
+<h3 id="oll-18">OLL 18<a class="headerlink" href="#oll-18" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O18.png" width="120"></p>
+<ul>
+<li>R U2 R2 F R F' U2 M' U R U' r'</li>
+</ul>
+<h3 id="oll-19">OLL 19<a class="headerlink" href="#oll-19" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O19.png" width="120"></p>
+<ul>
+<li>r' R U (R U R' U') r R2' F R F'</li>
+</ul>
+<h2 id="p-shapes">"P" shapes<a class="headerlink" href="#p-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-31">OLL 31<a class="headerlink" href="#oll-31" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O31.png" width="120"></p>
+<ul>
+<li>(y2) R' U' F (U R U' R') F' R</li>
+</ul>
+<h3 id="oll-32">OLL 32<a class="headerlink" href="#oll-32" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O32.png" width="120"></p>
+<ul>
+<li>R U B' U' R' U R B R'</li>
+<li>S (R U R' U') (R' F R f')</li>
+</ul>
+<h3 id="oll-43">OLL 43<a class="headerlink" href="#oll-43" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O43.png" width="120"></p>
+<ul>
+<li>(y) R' U' F' U F R</li>
+<li>(y2) F' (U' L' U L) F</li>
+</ul>
+<h3 id="oll-44">OLL 44<a class="headerlink" href="#oll-44" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O44.png" width="120"></p>
+<ul>
+<li>f (R U R' U') f'</li>
+<li>(y2) F (U R U' R') F'</li>
+</ul>
+<h2 id="w-shapes">"W" shapes<a class="headerlink" href="#w-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-36">OLL 36<a class="headerlink" href="#oll-36" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O36.png" width="120"></p>
+<ul>
+<li>(y2) (L' U' L U') (L' U L U) (L F' L' F)</li>
+<li>(y) R U R2 F' U' F U R2 U2 R'</li>
+</ul>
+<h3 id="oll-38">OLL 38<a class="headerlink" href="#oll-38" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O38.png" width="120"></p>
+<ul>
+<li>(y2) (R U R' U) (R U' R' U') (R' F R F')</li>
+</ul>
+<h2 id="l-shapes">"L" shapes<a class="headerlink" href="#l-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-48">OLL 48<a class="headerlink" href="#oll-48" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O48.png" width="120"></p>
+<ul>
+<li>F (R U R' U') (R U R' U') F'</li>
+</ul>
+<h3 id="oll-47">OLL 47<a class="headerlink" href="#oll-47" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O47.png" width="120"></p>
+<ul>
+<li>F' (L' U' L U) (L' U' L U) F</li>
+<li>R' U' (R' F R F') (R' F R F') U R</li>
+</ul>
+<h3 id="oll-53">OLL 53<a class="headerlink" href="#oll-53" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O53.png" width="120"></p>
+<ul>
+<li>(y2) r' U' (R U' R') (U R U' R') U2 r</li>
+</ul>
+<h3 id="oll-54">OLL 54<a class="headerlink" href="#oll-54" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O54.png" width="120"></p>
+<ul>
+<li>r U R' (U R U' R') U R U2 r'</li>
+</ul>
+<h3 id="oll-49">OLL 49<a class="headerlink" href="#oll-49" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O49.png" width="120"></p>
+<ul>
+<li>(y2) r U' r2 U r2 U r2 U' r</li>
+</ul>
+<h3 id="oll-50">OLL 50<a class="headerlink" href="#oll-50" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O50.png" width="120"></p>
+<ul>
+<li>r' U r2 U' r2' U' r2 U r'</li>
+</ul>
+<h2 id="c-shapes">"C" shapes<a class="headerlink" href="#c-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-34">OLL 34<a class="headerlink" href="#oll-34" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O34.png" width="120"></p>
+<ul>
+<li>(R U R' U') B' (R' F R S) z'</li>
+<li>(R U R2 U') R' F R U R U' F'</li>
+</ul>
+<h3 id="oll-46">OLL 46<a class="headerlink" href="#oll-46" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O46.png" width="120"></p>
+<ul>
+<li>R' U' (R' F R F') U R</li>
+</ul>
+<h2 id="t-shapes">"T" shapes<a class="headerlink" href="#t-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-33">OLL 33<a class="headerlink" href="#oll-33" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O33.png" width="120"></p>
+<ul>
+<li>(R U R' U') (R' F R F')</li>
+</ul>
+<h3 id="oll-45">OLL 45<a class="headerlink" href="#oll-45" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O45.png" width="120"></p>
+<ul>
+<li>F (R U R' U') F'</li>
+</ul>
+<h2 id="i-shapes">"I" shapes<a class="headerlink" href="#i-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-55">OLL 55<a class="headerlink" href="#oll-55" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/108</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O55.png" width="120"></p>
+<ul>
+<li>(y) R' F (R U R U') R2 F' R2 U' R' (U R U R')</li>
+<li>R U2 R2 U' R U' R' U2 F R F'</li>
+</ul>
+<h3 id="oll-56">OLL 56<a class="headerlink" href="#oll-56" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/108</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O56.png" width="120"></p>
+<ul>
+<li>r U r' (U R U' R') (U R U' R') r U' r'</li>
+</ul>
+<h3 id="oll-51">OLL 51<a class="headerlink" href="#oll-51" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O51.png" width="120"></p>
+<ul>
+<li>F (U R U' R') (U R U' R') F'</li>
+<li>(y2) f (R U R' U') (R U R' U') f'</li>
+</ul>
+<h3 id="oll-52">OLL 52<a class="headerlink" href="#oll-52" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O52.png" width="120"></p>
+<ul>
+<li>(y2) R' F' U' F U' (R U R' U R)</li>
+</ul>
+<h2 id="square-shapes">Square shapes<a class="headerlink" href="#square-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-5">OLL 5<a class="headerlink" href="#oll-5" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O5.png" width="120"></p>
+<ul>
+<li>(r' U2) (R U R' U r)</li>
+<li>(y2) R' F2 L F L' F R</li>
+</ul>
+<h3 id="oll-6">OLL 6<a class="headerlink" href="#oll-6" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O6.png" width="120"></p>
+<ul>
+<li>(y2) r U2 R' U' R U' r'</li>
+</ul>
+<h2 id="big-lightning-bolt-shapes">Big lightning bolt shapes<a class="headerlink" href="#big-lightning-bolt-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-39">OLL 39<a class="headerlink" href="#oll-39" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O39.png" width="120"></p>
+<ul>
+<li>L F' (L' U' L U) F U' L'</li>
+</ul>
+<h3 id="oll-40">OLL 40<a class="headerlink" href="#oll-40" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O40.png" width="120"></p>
+<ul>
+<li>R' F (R U R' U') F' U R</li>
+</ul>
+<h2 id="small-lightning-bolt-shapes">Small lightning bolt shapes<a class="headerlink" href="#small-lightning-bolt-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-7">OLL 7<a class="headerlink" href="#oll-7" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O7.png" width="120"></p>
+<ul>
+<li>r U R' U R U2 r'</li>
+</ul>
+<h3 id="oll-8">OLL 8<a class="headerlink" href="#oll-8" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O8.png" width="120"></p>
+<ul>
+<li>(l' U' L) U' (L' U2 l)</li>
+<li>(y2) (r' U' R) U' (R' U2 r)</li>
+</ul>
+<h3 id="oll-11">OLL 11<a class="headerlink" href="#oll-11" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O11.png" width="120"></p>
+<ul>
+<li>(y') r' R2 U R' U R U2 R' U M'</li>
+</ul>
+<h3 id="oll-12">OLL 12<a class="headerlink" href="#oll-12" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O12.png" width="120"></p>
+<ul>
+<li>(y') r R2' U' R U' R' U2 R U' R r'</li>
+</ul>
+<h2 id="fish-shapes">Fish shapes<a class="headerlink" href="#fish-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-9">OLL 9<a class="headerlink" href="#oll-9" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O9.png" width="120"></p>
+<ul>
+<li>(y') (R U R' U') R' (F R2 U R' U' F')</li>
+</ul>
+<h3 id="oll-10">OLL 10<a class="headerlink" href="#oll-10" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O10.png" width="120"></p>
+<ul>
+<li>(y') (R U R' U) (R' F R F') R U2 R'</li>
+</ul>
+<h3 id="oll-35">OLL 35<a class="headerlink" href="#oll-35" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O35.png" width="120"></p>
+<ul>
+<li>R U2 R2' F R F' R U2 R'</li>
+</ul>
+<h3 id="oll-37">OLL 37<a class="headerlink" href="#oll-37" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O37.png" width="120"></p>
+<ul>
+<li>(y) F R U' R' U' R U R' F'</li>
+<li>(y) (F R' F' R) (U R U' R')</li>
+</ul>
+<h2 id="knight-move-shapes">Knight move shapes<a class="headerlink" href="#knight-move-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-13">OLL 13<a class="headerlink" href="#oll-13" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O13.png" width="120"></p>
+<ul>
+<li>F U R U2 R' U' R U R' F'</li>
+<li>r U' r' U' r U r' y' R' U R</li>
+</ul>
+<h3 id="oll-14">OLL 14<a class="headerlink" href="#oll-14" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O14.png" width="120"></p>
+<ul>
+<li>R' F R U R' F' R F U' F'</li>
+</ul>
+<h3 id="oll-15">OLL 15<a class="headerlink" href="#oll-15" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O15.png" width="120"></p>
+<ul>
+<li>(y2) l' U' l (L' U' L U) l' U l</li>
+<li>r' U' r R' U' R U r' U r</li>
+</ul>
+<h3 id="oll-16">OLL 16<a class="headerlink" href="#oll-16" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O16.png" width="120"></p>
+<ul>
+<li>(y2) r U r' (R U R' U') r U' r'</li>
+<li>R' F R U R' U' F' R U' R' U2 R</li>
+</ul>
+<h2 id="awkward-shapes">Awkward shapes<a class="headerlink" href="#awkward-shapes" title="Permanent link">&para;</a></h2>
+<h3 id="oll-29">OLL 29<a class="headerlink" href="#oll-29" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O29.png" width="120"></p>
+<ul>
+<li>r2 D' r U r' D r2 U' r' U' r</li>
+<li>(y) (R U R' U') (R U' R' F') U' (F R U R')</li>
+<li>(y) S' R U R' U' R' F R F' U S</li>
+</ul>
+<h3 id="oll-30">OLL 30<a class="headerlink" href="#oll-30" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O30.png" width="120"></p>
+<ul>
+<li>(y') r' D' r U' r' D r2 U' r' U r U r'</li>
+</ul>
+<h3 id="oll-41">OLL 41<a class="headerlink" href="#oll-41" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O41.png" width="120"></p>
+<ul>
+<li>(y2) (R U R' U R U2 R') F (R U R' U') F'</li>
+</ul>
+<h3 id="oll-42">OLL 42<a class="headerlink" href="#oll-42" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O42.png" width="120"></p>
+<ul>
+<li>(R' U' R U' R' U2 R) (F R U R' U' F')</li>
+</ul>
+<h2 id="all-corners-oriented">All corners oriented<a class="headerlink" href="#all-corners-oriented" title="Permanent link">&para;</a></h2>
+<h3 id="oll-28">OLL 28<a class="headerlink" href="#oll-28" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/54</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O28.png" width="120"></p>
+<ul>
+<li>r U R' U' M U R U' R'</li>
+</ul>
+<h3 id="oll-57">OLL 57<a class="headerlink" href="#oll-57" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/108</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O57.png" width="120"></p>
+<ul>
+<li>R U R' U' M' U R U' r'</li>
+</ul>
+<h3 id="oll-20">OLL 20<a class="headerlink" href="#oll-20" title="Permanent link">&para;</a></h3>
+<p>Probability: <strong>1/216</strong></p>
+<p><img src="/rubik-algorithm/images/oll/O20.png" width="120"></p>
+<ul>
+<li>r' R U R U R' U' M2 U R U' r'</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.top", "navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tabs", "navigation.tabs.sticky", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
