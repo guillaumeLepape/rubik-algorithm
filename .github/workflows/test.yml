@@ -1,4 +1,4 @@
-name: 🧪 Unit tests
+name: 🧪 Tests
 
 on:
   push:
@@ -28,13 +28,11 @@ jobs:
         run: uv lock --check
 
   unit-tests:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        python-version: ["3.11"]
+    name: Unit tests
+    runs-on: ubuntu-latest
 
-    name: Python ${{ matrix.python-version }} - ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    env:
+      python-version: "3.13"
 
     steps:
       - uses: actions/checkout@v5
@@ -42,7 +40,7 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ env.python-version }}
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -52,3 +50,26 @@ jobs:
       - name: Run test
         run: uv run pytest --cov=rubik_algorithm --cov=tests --cov-report=xml --cov-config=pyproject.toml -vv
         if: ${{ always() }}
+
+  build-website:
+    name: Build website
+    runs-on: ubuntu-latest
+
+    env:
+      python-version: "3.13"
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ env.python-version }}
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Build website
+        run: uv run mkdocs build --strict

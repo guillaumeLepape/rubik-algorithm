@@ -98,6 +98,44 @@ U R' U' R U2 R' U R
 
 ### F2L 7
 
+**Setup**: R U R' U2' R U2' R' U
+
+{{ img_f2l(7) }}
+
+/// tab | Front Right
+**Main algorithm**
+
+```text
+U' R U2 R' U' R U2 R'
+```
+
+///
+
+/// tab | Front Left
+**Main algorithm**
+
+```text
+F U R U2 R' U F'
+```
+
+///
+/// tab | Back Left
+**Main algorithm**
+
+```text
+U' L U2 L' U2 L U' L'
+```
+
+///
+/// tab | Back Right
+**Main algorithm**
+
+```text
+r U2 R2 U' R2 U' r'
+```
+
+///
+
 ### F2L 8
 
 ## Reposition Edge and Flip Corner
