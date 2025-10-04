@@ -70,6 +70,17 @@ render_f2l(
 
 ### F2L 9
 
+{{
+render_f2l(
+9,
+"F' U F U' R U R' U",
+[("Main algorithm", "U' R U' R' U F' U' F")],
+[("Main algorithm", "U L' U' L U' L' U' L")],
+[("With rotation", "y U R' U' R U' R' U' R")],
+[("Main algorithm", "U R' U' R U' R' U' R")]
+)
+}}
+
 ### F2L 10
 
 ### F2L 11
