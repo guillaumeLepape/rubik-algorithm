@@ -55,6 +55,17 @@ render_f2l(
 
 ### F2L 8
 
+{{
+render_f2l(
+8,
+"r' U' R2 U' R2' U2' r",
+[("Main algorithm", "r' U2 R2 U R2 U r")],
+[("Main algorithm", "U L' U2 L U L' U2 L")],
+[("Main algorithm", "l' U2 L2 U L2 U l")],
+[("Main algorithm", "U R' U2 R U R' U2 R")]
+)
+}}
+
 ## Reposition Edge and Flip Corner
 
 ### F2L 9
