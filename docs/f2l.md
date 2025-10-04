@@ -16,125 +16,42 @@ Solve the first two layers of the cube simultaneously with these intuitive algor
 
 ### F2L 5
 
-**Setup**: R U R' U2' R U' R' U
-
-{{ img_f2l(5) }}
-
-/// tab | Front Right
-**Main Algorithm**
-
-```text
-U' R U R' U2 R U' R'
-```
-
-///
-
-/// tab | Front Left
-**Main Algorithm**
-
-```text
-U R' F r U' r' F' R
-```
-
-///
-
-/// tab | Back Left
-**Main Algorithm**
-
-```text
-U' L U L' U2 L U' L'
-```
-
-///
-
-/// tab | Back Right
-**Main Algorithm**
-
-```text
-U' R' F R U R' U' F' R
-```
-
-///
+{{
+render_f2l(
+5,
+"R U R' U2' R U' R' U",
+[("Main algorithm", "U' R U R' U2 R U' R'")],
+[("Main algorithm", "U R' F r U' r' F' R")],
+[("Main algorithm", "U' L U L' U2 L U' L'")],
+[("Main algorithm", "U' R' F R U R' U' F' R")],
+)
+}}
 
 ### F2L 6
 
-**Setup**: F' U' F U2' F' U F U'
-
-{{ img_f2l(6) }}
-
-/// tab | Front Right
-**Main algorithm**
-
-```text
-U' r U' R' U R U r'
-```
-
-///
-
-/// tab | Front Left
-**Main algorithm**
-
-```text
-U L' U' L U2 L' U L
-```
-
-///
-/// tab | Back Left
-**Main algorithm**
-
-```text
-U r U' r' U' L U F L'
-```
-
-///
-/// tab | Back Right
-**Main algorithm**
-
-```text
-U R' U' R U2 R' U R
-```
-
-///
+{{
+render_f2l(
+6,
+"F' U' F U2' F' U F U'",
+[("Main algorithm", "U' r U' R' U R U r'")],
+[("Main algorithm", "U L' U' L U2 L' U L")],
+[("Main algorithm", "U r U' r' U' L U F L'")],
+[("Main algorithm", "U R' U' R U2 R' U R")],
+)
+}}
 
 ### F2L 7
 
-**Setup**: R U R' U2' R U2' R' U
-
-{{ img_f2l(7) }}
-
-/// tab | Front Right
-**Main algorithm**
-
-```text
-U' R U2 R' U' R U2 R'
-```
-
-///
-
-/// tab | Front Left
-**Main algorithm**
-
-```text
-F U R U2 R' U F'
-```
-
-///
-/// tab | Back Left
-**Main algorithm**
-
-```text
-U' L U2 L' U2 L U' L'
-```
-
-///
-/// tab | Back Right
-**Main algorithm**
-
-```text
-r U2 R2 U' R2 U' r'
-```
-
-///
+{{
+render_f2l(
+7,
+"R U R' U2' R U2' R' U",
+[("Main algorithm", "U' R U2 R' U' R U2 R'")],
+[("Main algorithm", "F U R U2 R' U F'")],
+[("Main algorithm", "U' L U2 L' U2 L U' L'")],
+[("Main algorithm", "r U2 R2 U' R2 U' r'")],
+)
+}}
 
 ### F2L 8
 
@@ -162,51 +79,16 @@ r U2 R2 U' R2 U' r'
 
 ### F2L 18
 
-**Setup**: R U R' U' R U R' F R' F' R
-
-{{ img_f2l(18) }}
-
-/// tab | Front Right
-**Main algorithm**
-
-```text
-R' F R F' R U' R' U R U' R'
-```
-
-///
-
-/// tab | Front Left
-**Main algorithm**
-
-```text
-L' U2 L U L' U' L
-```
-
-///
-
-/// tab | Back Left
-**With Rotation**
-
-```text
-y R' U2 R U R' U' R
-```
-
-**Rotationless**
-
-```text
-U F U R U' R' F' L U L'
-```
-
-///
-
-/// tab | Back Right
-**Main algorithm**
-
-```text
-R' U2 R U R' U' R
-```
-
-///
+{{
+render_f2l(
+18,
+"R U R' U' R U R' F R' F' R",
+[("Main algorithm", "R' F R F' R U' R' U R U' R'")],
+[("Main algorithm", "L' U2 L U L' U' L")],
+[("With rotation", "y R' U2 R U R' U' R"), ("Rotationless", "U F U R U' R' F' L U L'")],
+[("Main algorithm", "R' U2 R U R' U' R")],
+)
+}}
 
 ## Pair Made on Side
 
