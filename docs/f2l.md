@@ -148,7 +148,29 @@ render_f2l(
 
 ### F2L 23
 
+{{
+render_f2l(
+23,
+"R U' R' U R U' R' U2' R U' R'",
+[("Main algorithm", "U R U' R' U' R U' R' U R U' R'")],
+[("Main algorithm", "F' U' L' U L F L' U L")],
+[("Main algorithm", "U L U' L' U' L U' L' U L U' L'")],
+[("Main algorithm", "U R' F R' F' R2 U' R' U R")],
+)
+}}
+
 ### F2L 24
+
+{{
+render_f2l(
+24,
+"R U R' F R U R' U' F'",
+[("Main algorithm", "F U R U' R' F' R U' R'")],
+[("Main algorithm", "U' L' U L U L' U L U' L' U L")],
+[("Main algorithm", "U2 r U R' U R U2 B r'")],
+[("Main algorithm", "R' U' R U2 R' U' R U R' U' R")],
+)
+}}
 
 ## Corner in Place, Edge in U Face
 
