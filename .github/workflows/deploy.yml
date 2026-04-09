@@ -10,9 +10,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
-    env:
-      python-version: "3.13"
+    environment: deployment
 
     steps:
       - uses: actions/checkout@v5
@@ -20,7 +18,7 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.python-version }}
+          python-version: 3.13
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -29,8 +27,20 @@ jobs:
 
       - name: Configure Git Credentials
         run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config user.name "${{ secrets.USER_NAME }}"
+          git config user.email "${{ secrets.USER_EMAIL }}"
 
-      - name: Deploy website
-        run: uv run mkdocs gh-deploy -d site/ -b release/main --force
+      - name: Build website
+        run: uv run mkdocs build
+
+      - name: Deploy to release/main
+        run: |-
+          git fetch origin release/main
+          git worktree add /tmp/release origin/release/main
+          rm -rf /tmp/release/site /tmp/release/docker-compose.yml
+          cp -r site /tmp/release/site
+          cp docker-compose.yml /tmp/release/docker-compose.yml
+          cd /tmp/release
+          git add -A
+          git diff --cached --quiet || git commit -m "Deploy docs [skip ci]"
+          git push origin HEAD:release/main --force
