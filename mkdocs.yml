@@ -19,10 +19,6 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
-  font:
-    features:
-      - local
-
   features:
     - navigation.expand
     - navigation.top
@@ -39,6 +35,7 @@ plugins:
   - site-urls
   - macros:
       module_name: macros
+  - privacy
 
 markdown_extensions:
   - toc:
