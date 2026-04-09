@@ -36,11 +36,12 @@ jobs:
       - name: Deploy to release/main
         run: |-
           git fetch origin release/main
-          git worktree add /tmp/release origin/release/main
-          rm -rf /tmp/release/site /tmp/release/docker-compose.yml
+          mkdir /tmp/release
           cp -r site /tmp/release/site
           cp docker-compose.yml /tmp/release/docker-compose.yml
-          cd /tmp/release
+          git switch release/main
+          cp /tmp/release/docker-compose.yml docker-compose.yml
+          cp /tmp/release/site site
           git add -A
           git commit -m "Deploy docs"
           git push origin HEAD:release/main --force
