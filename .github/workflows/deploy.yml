@@ -42,5 +42,5 @@ jobs:
           cp docker-compose.yml /tmp/release/docker-compose.yml
           cd /tmp/release
           git add -A
-          git diff --cached --quiet || git commit -m "Deploy docs [skip ci]"
+          git commit -m "Deploy docs"
           git push origin HEAD:release/main --force
