@@ -20,12 +20,12 @@ repos:
       - id: name-tests-test
 
   - repo: https://github.com/bwhmather/ssort
-    rev: 0.15.0
+    rev: 0.16.0
     hooks:
       - id: ssort
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.2
+    rev: v0.15.9
     hooks:
       - id: ruff-check
       - id: ruff-format
@@ -36,22 +36,22 @@ repos:
       - id: mdformat
 
   - repo: https://github.com/google/yamlfmt
-    rev: v0.20.0
+    rev: v0.21.0
     hooks:
       - id: yamlfmt
 
   - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.15.0
+    rev: v2.16.0
     hooks:
       - id: pretty-format-toml
         args: [--autofix, --indent, "4", --trailing-commas, --no-sort]
 
   - repo: https://github.com/adhtruong/mirrors-typos
-    rev: v1.38.1
+    rev: v1.45.0
     hooks:
       - id: typos
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.9.5
+    rev: 0.11.5
     hooks:
       - id: uv-lock
