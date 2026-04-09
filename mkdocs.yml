@@ -1,5 +1,5 @@
 site_name: Rubik's Cube Algorithms
-site_url: https://guillaumelepape.github.io/rubik-algorithm/
+site_url: https://rubik.omuforge.com
 
 theme:
   name: material
@@ -49,6 +49,6 @@ watch:
 nav:
   - Home: index.md
   - COFP:
-      - '<img src="/rubik-algorithm/images/f2l/menu_icon.png" width="20"> F2L': f2l.md
-      - '<img src="/rubik-algorithm/images/oll/menu_icon.png" width="20"> OLL': oll.md
-      - '<img src="/rubik-algorithm/images/pll/menu_icon.png" width="20"> PLL': pll.md
+      - '<img src="/images/f2l/menu_icon.png" width="20"> F2L': f2l.md
+      - '<img src="/images/oll/menu_icon.png" width="20"> OLL': oll.md
+      - '<img src="/images/pll/menu_icon.png" width="20"> PLL': pll.md

@@ -2,7 +2,7 @@
 
 A collection of speedcubing algorithms and notes, featuring CFOP method algorithms with visual diagrams.
 
-🌐 **Live Website**: https://guillaumelepape.github.io/rubik-algorithm/
+🌐 **Live Website**: https://rubik.omuforge.com
 
 ## Features
 
@@ -41,4 +41,4 @@ mkdocs serve
 ## Technologies
 
 - **Documentation**: MkDocs with Material theme
-- **Deployment**: GitHub Pages
+- **Deployment**: Self hosted
