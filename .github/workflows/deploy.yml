@@ -27,22 +27,27 @@ jobs:
 
       - name: Configure Git Credentials
         run: |
-          git config user.name "${{ secrets.USER_NAME }}"
-          git config user.email "${{ secrets.USER_MAIL }}"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
       - name: Build website
         run: uv run mkdocs build
 
       - name: Deploy to release/main
         run: |-
-          git fetch origin release/main
-          export RELEASE_FOLDER=/tmp/release_$(date +%s)
-          mkdir $RELEASE_FOLDER
-          cp -r site $RELEASE_FOLDER/site
-          cp docker-compose.yml $RELEASE_FOLDER/docker-compose.yml
-          git switch release/main
-          cp $RELEASE_FOLDER/docker-compose.yml docker-compose.yml
-          cp -r $RELEASE_FOLDER/site site
-          git add -A
-          git commit -m "Deploy docs"
-          git push origin HEAD:release/main --force
+          # Create worktree for release
+          git fetch origin
+          git worktree add /tmp/release origin/release/main
+
+          # Clean previous contents
+          rm -rf /tmp/release/*
+
+          # Copy new build
+          cp -r site /tmp/release/
+          cp docker-compose.yml /tmp/release/
+
+          cd /tmp/release
+
+          git add .
+          git commit -m "Update site" || echo "No changes to commit"
+          git push origin release/main
