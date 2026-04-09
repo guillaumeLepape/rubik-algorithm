@@ -36,7 +36,7 @@ jobs:
       - name: Deploy to release/main
         run: |-
           git fetch origin release/main
-          export RELEASE_FOLDER=/tmp/release/$(date +%s)
+          export RELEASE_FOLDER=/tmp/release_$(date +%s)
           mkdir $RELEASE_FOLDER
           cp -r site $RELEASE_FOLDER/site
           cp docker-compose.yml $RELEASE_FOLDER/docker-compose.yml
