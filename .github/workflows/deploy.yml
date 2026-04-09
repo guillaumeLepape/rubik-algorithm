@@ -41,7 +41,7 @@ jobs:
           cp docker-compose.yml /tmp/release/docker-compose.yml
           git switch release/main
           cp /tmp/release/docker-compose.yml docker-compose.yml
-          cp /tmp/release/site site
+          cp -r /tmp/release/site site
           git add -A
           git commit -m "Deploy docs"
           git push origin HEAD:release/main --force
