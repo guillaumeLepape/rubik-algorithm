@@ -10,7 +10,6 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: deployment
 
     steps:
       - uses: actions/checkout@v5
@@ -50,4 +49,4 @@ jobs:
 
           git add .
           git commit -m "Update site" || echo "No changes to commit"
-          git push origin release/main
+          git push origin HEAD:release/main
