@@ -36,6 +36,7 @@ plugins:
   - macros:
       module_name: macros
   - privacy
+  - optimize
 
 markdown_extensions:
   - toc:

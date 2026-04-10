@@ -11,16 +11,13 @@ jobs:
     name: Check lock file
     runs-on: ubuntu-latest
 
-    env:
-      python-version: "3.13"
-
     steps:
       - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.python-version }}
+          python-version: 3.13
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -31,16 +28,13 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
 
-    env:
-      python-version: "3.13"
-
     steps:
       - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.python-version }}
+          python-version: 3.13
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
@@ -55,20 +49,20 @@ jobs:
     name: Build website
     runs-on: ubuntu-latest
 
-    env:
-      python-version: "3.13"
-
     steps:
       - uses: actions/checkout@v5
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
         with:
-          python-version: ${{ env.python-version }}
+          python-version: 3.13
           enable-cache: true
           cache-dependency-glob: "uv.lock"
 
       - name: Install dependencies
+        run: sudo apt install -y pngquant
+
+      - name: Install python dependencies
         run: uv sync
 
       - name: Build website
