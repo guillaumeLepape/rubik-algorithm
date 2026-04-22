@@ -46,7 +46,7 @@ jobs:
 
           # Copy new build
           cp -r site /tmp/release/
-          cp docker-compose.yml /tmp/release/
+          cp compose.yaml /tmp/release/
 
           cd /tmp/release
 
