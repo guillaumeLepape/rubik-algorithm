@@ -1,6 +1,7 @@
 services:
   rubik-algorithm:
     image: nginx:1.29.8-alpine3.23
+    container_name: rubik-algorithm
     restart: unless-stopped
     volumes:
       - ./site:/usr/share/nginx/html:ro
