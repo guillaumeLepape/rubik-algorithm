@@ -176,6 +176,17 @@ render_f2l(
 
 ### F2L 25
 
+{{
+render_f2l(
+25,
+"F' R U R' U' R' F R",
+[("Main algorithm", "U' R' F R F' R U R'")],
+[("Main algorithm", "U' L' U L F' r U r'")],
+[("Main algorithm", "L U' L' U' L U' L' U L U L'")],
+[("Main algorithm", "U' R' U M U' R U M'")],
+)
+}}
+
 ### F2L 26
 
 ### F2L 27
