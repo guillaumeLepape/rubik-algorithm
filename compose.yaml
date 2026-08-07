@@ -1,6 +1,6 @@
 services:
   rubik-algorithm:
-    image: nginx:1.29.8-alpine3.23
+    image: docker.io/nginx:1.29.8-alpine3.23
     container_name: rubik-algorithm
     restart: unless-stopped
     volumes:
