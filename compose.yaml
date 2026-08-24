@@ -1,6 +1,6 @@
 services:
   rubik-algorithm:
-    image: lscr.io/nginx:1.30.4
+    image: lscr.io/linuxserver/nginx:1.30.4
     container_name: rubik-algorithm
     restart: unless-stopped
     environment:
