@@ -7,7 +7,7 @@ alias c := check
 
 init:
     just install
-    uv run pre-commit install --install-hooks
+    uv run prek install
 
 install:
     uv sync
@@ -29,4 +29,4 @@ test-cov:
       -vv
 
 check:
-    uv run pre-commit run -a
+    uv run prek -a
