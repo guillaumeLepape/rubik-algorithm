@@ -1,7 +1,7 @@
 import re
 from copy import deepcopy
 from enum import StrEnum
-from typing import Any, TypeAlias
+from typing import Any
 
 import numpy as np
 import numpy.typing as npt
@@ -53,9 +53,9 @@ class CubeRotation(StrEnum):
     z_PRIME = "Z_PRIME"
 
 
-Rotation: TypeAlias = FaceRotation | CubeRotation
+type Rotation = FaceRotation | CubeRotation
 
-Movement: TypeAlias = tuple[Rotation, int]
+type Movement = tuple[Rotation, int]
 
 NAME_TO_MOVEMENT: dict[str, Rotation] = {
     "R": FaceRotation.R,
