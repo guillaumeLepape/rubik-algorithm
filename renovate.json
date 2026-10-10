@@ -1,0 +1,29 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:best-practices"
+    ],
+    "docker-compose": {
+        "enabled": true
+    },
+    "pep621": {
+        "enabled": true
+    },
+    "pre-commit": {
+        "enabled": true
+    },
+    "github-actions": {
+        "enabled": true
+    },
+    "packageRules": [
+        {
+            "matchManagers": [
+                "docker-compose",
+                "github-actions",
+                "pep621",
+                "pre-commit"
+            ],
+            "automerge": false
+        }
+    ]
+}
