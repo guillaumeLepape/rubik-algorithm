@@ -9,7 +9,7 @@ on:
 jobs:
   check-lock-file:
     name: Check lock file
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
@@ -27,7 +27,7 @@ jobs:
 
   unit-tests:
     name: Unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
@@ -49,7 +49,7 @@ jobs:
 
   build-website:
     name: Build website
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
 
     steps:
       - name: Checkout code
