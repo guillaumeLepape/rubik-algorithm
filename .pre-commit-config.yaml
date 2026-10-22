@@ -53,6 +53,6 @@ repos:
       - id: typos
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.13.1
+    rev: 0.13.5
     hooks:
       - id: uv-lock
