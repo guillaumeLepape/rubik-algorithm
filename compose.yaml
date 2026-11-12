@@ -4,8 +4,8 @@ services:
     container_name: rubik-algorithm
     restart: unless-stopped
     environment:
-      - PUID=950
-      - PGID=950
+      - PUID=${PUID:?error}
+      - PGID=${PGID:?error}
       - TZ=Europe/Paris
     volumes:
       - ./site:/config/www:ro
