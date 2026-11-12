@@ -15,3 +15,8 @@ services:
       - /run:exec
       - /tmp
     read_only: true
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
